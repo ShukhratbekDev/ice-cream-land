@@ -2,18 +2,9 @@
 
 import { Menu } from 'lucide-react';
 
-import { Button, buttonVariants } from '@/components/ui/button';
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from '@/components/ui/navigation-menu';
+import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
 import Logo from './logo';
-import Link from 'next/link';
 import NavMenus from '@/components/nav-menus';
 
 const brandName = 'Ice Cream Land';

@@ -30,7 +30,7 @@ const NavMenus = () => {
     <NavigationMenu>
       <NavigationMenuList>
         {menus.map((menu, index) => (
-          <NavigationMenuItem>
+          <NavigationMenuItem key={index}>
             <Link href={menu.path} legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>{menu.name}</NavigationMenuLink>
             </Link>
