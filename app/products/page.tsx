@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Products() {
   return (
     <main className="container">
-      <h1>Home page</h1>
+      <h1>Products</h1>
     </main>
   );
 }
