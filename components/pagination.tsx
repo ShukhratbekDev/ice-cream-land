@@ -6,9 +6,9 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from '@/components/ui/pagination';
 
-const PaginationDemo = () =>  {
+const PaginationDemo = () => {
   return (
     <Pagination>
       <PaginationContent>
@@ -34,7 +34,7 @@ const PaginationDemo = () =>  {
         </PaginationItem>
       </PaginationContent>
     </Pagination>
-  )
-}
+  );
+};
 
 export default PaginationDemo;
