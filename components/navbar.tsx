@@ -5,7 +5,7 @@ import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Logo from './logo';
-import NavMenus from '@/components/nav-menus';
+import NavMenus from '@/components/navMenus';
 
 const brandName = 'Ice Cream Land';
 
