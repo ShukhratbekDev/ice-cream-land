@@ -1,4 +1,4 @@
-import PaginationDemo from '@/components/pagination';
+import PaginationDemo from '@/components/Pagination';
 
 export default function AboutUs() {
   return (
