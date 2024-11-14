@@ -1,4 +1,4 @@
-import ProductsList from '@/components/ProductsList';
+import ProductsList from '@/components/productsList';
 import { getProducts } from '@/utils/api-requests';
 import { dehydrate, HydrationBoundary } from '@tanstack/react-query';
 import { QueryClient } from '@tanstack/query-core';

@@ -4,7 +4,7 @@ import React from 'react';
 import { getProducts } from '@/utils/api-requests';
 import { useQuery } from '@tanstack/react-query';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import ProductCard from '@/components/ProductCard';
+import ProductCard from '@/components/productcard';
 
 const defaultTab = 'All';
 
