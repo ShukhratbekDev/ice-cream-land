@@ -9,9 +9,7 @@ import backgroundImage from '@/public/background_home.jpg';
 const HomePage = () => {
   return (
     <main className="relative min-h-screen">
-      {/ Hero Section /}
       <div className="relative h-screen w-full overflow-hidden bg-neutral-100">
-        {/ Background Image /}
         <div className="absolute inset-0">
           <Image
             src={backgroundImage}
@@ -23,10 +21,8 @@ const HomePage = () => {
           />
         </div>
 
-        {/ Overlay for better text readability /}
         <div className="absolute inset-0 bg-black/20" />
 
-        {/ Content /}
         <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-12 lg:px-24">
           <div className="max-w-2xl space-y-6">
             <h1 className="mb-4 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
