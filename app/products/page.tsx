@@ -13,10 +13,11 @@ export default async function Products() {
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <main className="container">
-        <h1>Products</h1>
-        <ProductsList />
-      </main>
+      <section className="justify-items-center py-3">
+        <div className="container">
+          <ProductsList />
+        </div>
+      </section>
     </HydrationBoundary>
   );
 }

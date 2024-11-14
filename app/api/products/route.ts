@@ -5,7 +5,7 @@ export async function GET() {
     {
       id: '1',
       name: 'Vanilla Bean Delight',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/vanilla_bean_delight.jpg',
       description: 'A timeless classic made with the finest vanilla beans for a rich, creamy experience.',
@@ -15,7 +15,7 @@ export async function GET() {
     {
       id: '2',
       name: 'Chocolate Fudge Swirl',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/chocolate_fudge_swirl.jpg',
       description: 'Decadent chocolate ice cream with a luscious fudge swirl.',
@@ -25,7 +25,7 @@ export async function GET() {
     {
       id: '3',
       name: 'Strawberry Sensation',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/strawberry_sensation.jpg',
       description: 'Creamy and delicious with real strawberry pieces for a fruity burst.',
@@ -35,7 +35,7 @@ export async function GET() {
     {
       id: '4',
       name: 'Mint Chocolate Chip',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.5,
       image: '/public/mint_chocolate_chip.jpg',
       description: 'Refreshing mint ice cream loaded with dark chocolate chips.',
@@ -45,7 +45,7 @@ export async function GET() {
     {
       id: '5',
       name: 'Cookies and Cream',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/cookies_and_cream.jpg',
       description: 'Creamy vanilla ice cream mixed with crunchy cookie pieces.',
@@ -55,7 +55,7 @@ export async function GET() {
     {
       id: '6',
       name: 'Butter Pecan',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/butter_pecan.jpg',
       description: 'Rich and creamy ice cream with roasted pecan pieces.',
@@ -65,7 +65,7 @@ export async function GET() {
     {
       id: '7',
       name: 'Rocky Road',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/rocky_road.jpg',
       description: 'Chocolate ice cream with marshmallows and almonds.',
@@ -75,7 +75,7 @@ export async function GET() {
     {
       id: '8',
       name: 'Classic Coffee',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.5,
       image: '/public/classic_coffee.jpg',
       description: 'Rich and aromatic coffee-flavored ice cream.',
@@ -85,7 +85,7 @@ export async function GET() {
     {
       id: '9',
       name: 'Pumpkin Spice',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/pumpkin_spice.jpg',
       description: 'Celebrate the fall season with this warm, spiced pumpkin ice cream.',
@@ -95,7 +95,7 @@ export async function GET() {
     {
       id: '10',
       name: 'Eggnog Delight',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/eggnog_delight.jpg',
       description: 'Rich and creamy eggnog-flavored ice cream for the winter holidays.',
@@ -105,7 +105,7 @@ export async function GET() {
     {
       id: '34',
       name: 'Peppermint Candy Cane',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/peppermint_candy_cane.jpg',
       description: 'A festive holiday treat with peppermint ice cream and candy cane pieces.',
@@ -115,7 +115,7 @@ export async function GET() {
     {
       id: '11',
       name: 'Spring Berry Medley',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/spring_berry_medley.jpg',
       description: 'A mix of refreshing berries for a delightful spring treat.',
@@ -125,7 +125,7 @@ export async function GET() {
     {
       id: '12',
       name: 'Summer Citrus',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/summer_citrus.jpg',
       description: 'A tangy and refreshing citrus blend perfect for summer.',
@@ -135,7 +135,7 @@ export async function GET() {
     {
       id: '13',
       name: 'Maple Walnut',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/maple_walnut.jpg',
       description: 'A rich and nutty flavor with a hint of maple syrup.',
@@ -145,7 +145,7 @@ export async function GET() {
     {
       id: '14',
       name: 'Coconut Paradise',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/coconut_paradise.jpg',
       description: 'Creamy coconut-based ice cream with a tropical coconut flavor.',
@@ -155,7 +155,7 @@ export async function GET() {
     {
       id: '15',
       name: 'Chocolate Almond',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/chocolate_almond.jpg',
       description: 'Rich and creamy chocolate ice cream with almond pieces.',
@@ -165,7 +165,7 @@ export async function GET() {
     {
       id: '16',
       name: 'Mango Sorbet',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/mango_sorbet.jpg',
       description: 'Refreshing and fruity mango sorbet made with real mangoes.',
@@ -175,7 +175,7 @@ export async function GET() {
     {
       id: '17',
       name: 'Blueberry Acai',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/blueberry_acai.jpg',
       description: 'A refreshing sorbet with the antioxidant benefits of blueberries and acai berries.',
@@ -185,7 +185,7 @@ export async function GET() {
     {
       id: '18',
       name: 'Pistachio Dream (made with almond milk)',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/pistachio_dream.jpg',
       description: 'Lovely pistachio flavor made creamy with almond milk.',
@@ -195,7 +195,7 @@ export async function GET() {
     {
       id: '19',
       name: 'Vegan Vanilla',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.5,
       image: '/public/vegan_vanilla.jpg',
       description: 'A vegan take on the classic vanilla flavor made with almond milk.',
@@ -205,7 +205,7 @@ export async function GET() {
     {
       id: '20',
       name: 'Raspberry Ripple Sorbet',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/raspberry_ripple_sorbet.jpg',
       description: 'Tangy raspberry sorbet swirled with rich raspberry sauce.',
@@ -215,7 +215,7 @@ export async function GET() {
     {
       id: '21',
       name: 'Salted Caramel Pretzel',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/salted_caramel_pretzel.jpg',
       description: 'Creamy caramel ice cream with salted caramel swirls and crunchy pretzel pieces.',
@@ -225,7 +225,7 @@ export async function GET() {
     {
       id: '22',
       name: 'Lavender Honey',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/lavender_honey.jpg',
       description: 'A floral and sweet treat made with real lavender and honey.',
@@ -235,7 +235,7 @@ export async function GET() {
     {
       id: '23',
       name: 'Cherry Bourbon',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/cherry_bourbon.jpg',
       description: 'Luxurious cherry ice cream with a hint of bourbon.',
@@ -245,7 +245,7 @@ export async function GET() {
     {
       id: '24',
       name: 'Rose Pistachio',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/rose_pistachio.jpg',
       description: 'Unique and delightful with the delicate flavor of rose and crunchy pistachio.',
@@ -255,7 +255,7 @@ export async function GET() {
     {
       id: '25',
       name: 'Matcha Green Tea',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/matcha_green_tea.jpg',
       description: 'Vibrant and earthy flavor made with real matcha green tea.',
@@ -265,7 +265,7 @@ export async function GET() {
     {
       id: '26',
       name: 'Black Sesame Delight',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/black_sesame_delight.jpg',
       description: 'A unique treat with the rich, nutty flavor of black sesame.',
@@ -275,7 +275,7 @@ export async function GET() {
     {
       id: '27',
       name: 'Spicy Chocolate Hazelnut',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/spicy_chocolate_hazelnut.jpg',
       description: 'A bold combination of chocolate, hazelnut, and a hint of spice.',
@@ -285,7 +285,7 @@ export async function GET() {
     {
       id: '28',
       name: 'Sugar-Free Vanilla',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/sugar_free_vanilla.jpg',
       description: 'The classic vanilla taste with no added sugar.',
@@ -295,7 +295,7 @@ export async function GET() {
     {
       id: '29',
       name: 'Low-Fat Chocolate',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.5,
       image: '/public/low_fat_chocolate.jpg',
       description: 'Creamy chocolate ice cream with reduced fat.',
@@ -305,7 +305,7 @@ export async function GET() {
     {
       id: '30',
       name: 'Keto-Friendly Coffee',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/keto_friendly_coffee.jpg',
       description: 'Rich coffee ice cream with keto-friendly ingredients.',
@@ -315,7 +315,7 @@ export async function GET() {
     {
       id: '31',
       name: 'Gluten-Free Brownie Batter',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.7,
       image: '/public/gluten_free_brownie_batter.jpg',
       description: "Delicious brownie batter ice cream that's gluten-free.",
@@ -325,7 +325,7 @@ export async function GET() {
     {
       id: '32',
       name: 'Dairy-Free Dark Chocolate',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.8,
       image: '/public/dairy_free_dark_chocolate.jpg',
       description: 'Rich and creamy dark chocolate without any dairy.',
@@ -335,7 +335,7 @@ export async function GET() {
     {
       id: '33',
       name: 'Protein-Packed Peanut Butter',
-      price: '$5.00',
+      price: 5.0,
       rating: 4.6,
       image: '/public/protein_packed_peanut_butter.jpg',
       description: 'Creamy peanut butter ice cream with extra protein.',

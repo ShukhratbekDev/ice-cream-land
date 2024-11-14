@@ -1,11 +1,12 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
 import { getProducts } from '@/utils/api-requests';
 import { useQuery } from '@tanstack/react-query';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import ProductCard from '@/components/ProductCard';
+
+const defaultTab = 'All';
 
 const ProductsList = () => {
   const { data } = useQuery({
@@ -13,56 +14,30 @@ const ProductsList = () => {
     queryFn: () => getProducts(),
     staleTime: 10 * 1000,
   });
-  const categories = ['All', ...new Set(data?.map((product) => product.category))].sort();
+  const categories = [defaultTab, ...new Set(data?.map((product) => product.category))].sort();
 
   return (
-    <div className="flex">
-      <Tabs defaultValue="All">
-        <TabsList>
+    <div className="hidden flex-col md:flex">
+      <div className="flex-1 space-y-4 p-8 pt-6">
+        <Tabs defaultValue={defaultTab} className="space-y-8">
+          <TabsList>
+            {categories.map((category) => (
+              <TabsTrigger key={`tab-trigger-${category}`} value={category}>
+                {category}
+              </TabsTrigger>
+            ))}
+          </TabsList>
           {categories.map((category) => (
-            <TabsTrigger key={`tab-trigger-${category}`} value={category}>
-              {category}
-            </TabsTrigger>
+            <TabsContent key={`tab-content-${category}`} value={category} className="space-y-4">
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+                {(category === 'All' ? data : data?.filter((product) => product.category === category))?.map(
+                  (product) => <ProductCard product={product} key={category + product.id} />
+                )}
+              </div>
+            </TabsContent>
           ))}
-        </TabsList>
-        {categories.map((category) => (
-          <TabsContent key={`tab-content-${category}`} value={category}>
-            <div className="grid grid-cols-4 gap-4">
-              {(category === 'All' ? data : data?.filter((product) => product.category === category))?.map(
-                (product) => (
-                  <Card key={category + product.id}>
-                    <CardHeader>
-                      <div className="relative h-full w-full">
-                        <Image
-                          src="/image-placeholder.png"
-                          alt={product.name}
-                          sizes="100vw"
-                          style={{
-                            width: '100%',
-                            height: 'auto',
-                          }}
-                          width={500}
-                          height={300}
-                          className="object-cover"
-                          placeholder="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg=="
-                        />
-                      </div>
-                      <CardTitle>{product.name}</CardTitle>
-                      <CardDescription>{product.description}</CardDescription>
-                    </CardHeader>
-                    <CardContent>
-                      <p>{product.ingredients.join(', ')}</p>
-                    </CardContent>
-                    <CardFooter>
-                      <p>{product.price}</p>
-                    </CardFooter>
-                  </Card>
-                )
-              )}
-            </div>
-          </TabsContent>
-        ))}
-      </Tabs>
+        </Tabs>
+      </div>
     </div>
   );
 };
