@@ -25,6 +25,14 @@ const nextConfig = {
 
     return config;
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.shadcnblocks.com',
+      },
+    ],
+  },
 };
 
 export default nextConfig;
