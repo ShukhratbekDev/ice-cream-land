@@ -7,8 +7,8 @@ import Logo from './Logo';
 import NavMenus from '@/components/NavMenus';
 import React from 'react';
 import CartButton from '@/components/CartButton';
-
-const brandName = 'Ice Cream Land';
+import ModeSwitcher from '@/components/ModeSwitcher';
+import { siteConfig } from '@/config/site';
 
 const Navbar = () => {
   return (
@@ -18,13 +18,14 @@ const Navbar = () => {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Logo />
-              <span className="font-bold">{brandName}</span>
+              <span className="font-bold">{siteConfig.name}</span>
             </div>
             <div className="flex items-center">
               <NavMenus />
             </div>
           </div>
           <div className="flex gap-2">
+            <ModeSwitcher />
             <Button variant="ghost" size="icon" className="">
               <HeartIcon className="size-4" />
             </Button>
@@ -35,7 +36,7 @@ const Navbar = () => {
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Logo />
-              <span className="text-xl font-bold">{brandName}</span>
+              <span className="text-xl font-bold">{siteConfig.name}</span>
             </div>
             <Sheet>
               <SheetTrigger asChild>
@@ -48,7 +49,7 @@ const Navbar = () => {
                   <SheetTitle>
                     <div className="flex items-center gap-2">
                       <Logo />
-                      <span className="text-xl font-bold">{brandName}</span>
+                      <span className="text-xl font-bold">{siteConfig.name}</span>
                     </div>
                   </SheetTitle>
                 </SheetHeader>
