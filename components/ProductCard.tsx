@@ -6,7 +6,7 @@ import { Product } from '@/utils/api-requests';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import RatingStars from '@/components/ratingStars';
+import RatingStars from '@/components/RatingStars';
 
 type ProductCardProps = {
   product: Product;
