@@ -24,7 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     <Card className="max-w-sm overflow-hidden">
       <CardHeader className="p-0 group">
         <figure className="group-hover:opacity-80 relative w-full aspect-[4/3] mb-4">
-          <Image src="/image-placeholder.png" alt={product.name} layout="fill" objectFit="cover" />
+          <Image src={product.image} alt={product.name} layout="fill" objectFit="cover" />
           <Badge variant="secondary" className="absolute top-3 left-3 text-sm">
             {product.category}
           </Badge>
