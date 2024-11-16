@@ -1,11 +1,12 @@
 'use client';
 
-import { Menu } from 'lucide-react';
-
+import { HeartIcon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Logo from './Logo';
 import NavMenus from '@/components/NavMenus';
+import React from 'react';
+import CartButton from '@/components/CartButton';
 
 const brandName = 'Ice Cream Land';
 
@@ -13,7 +14,7 @@ const Navbar = () => {
   return (
     <section className="justify-items-center py-3">
       <div className="container">
-        <nav className="hidden justify-between lg:flex">
+        <nav className="hidden justify-between items-center lg:flex">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <Logo />
@@ -24,8 +25,10 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex gap-2">
-            <Button variant={'outline'}>Log in</Button>
-            <Button>Sign up</Button>
+            <Button variant="ghost" size="icon" className="">
+              <HeartIcon className="size-4" />
+            </Button>
+            <CartButton />
           </div>
         </nav>
         <div className="block lg:hidden">
@@ -54,8 +57,13 @@ const Navbar = () => {
                 </div>
                 <div className="border-t pt-4">
                   <div className="mt-2 flex flex-col gap-3">
-                    <Button variant={'outline'}>Log in</Button>
-                    <Button>Sign up</Button>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
+                    >
+                      <HeartIcon className="size-4" />
+                    </Button>
                   </div>
                 </div>
               </SheetContent>
