@@ -9,6 +9,7 @@ import React from 'react';
 import CartButton from '@/components/CartButton';
 import ModeSwitcher from '@/components/ModeSwitcher';
 import { siteConfig } from '@/config/site';
+import LikesButton from '@/components/LikesButton';
 
 const Navbar = () => {
   return (
@@ -26,9 +27,7 @@ const Navbar = () => {
           </div>
           <div className="flex gap-2">
             <ModeSwitcher />
-            <Button variant="ghost" size="icon" className="">
-              <HeartIcon className="size-4" />
-            </Button>
+            <LikesButton />
             <CartButton />
           </div>
         </nav>

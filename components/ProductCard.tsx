@@ -8,6 +8,7 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import RatingStars from '@/components/RatingStars';
 import { useCart } from 'react-use-cart';
+import useBasicStore from '@/hooks/useBasicStore';
 
 type ProductCardProps = {
   product: Product;
@@ -15,8 +16,8 @@ type ProductCardProps = {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
-  const [isLiked, setLike] = useState(false);
   const { addItem } = useCart();
+  const { getLike, addLike, removeLike } = useBasicStore();
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -35,8 +36,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Badge variant="secondary" className="absolute top-3 left-3 text-sm">
             {product.category}
           </Badge>
-          <Button variant="ghost" size="icon" className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black">
-            <HeartIcon className="size-4" fill={isLiked ? 'red' : 'none'} onClick={() => setLike(!isLiked)} />
+          <Button
+            variant="ghost"
+            size="icon"
+            className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
+            onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
+          >
+            <HeartIcon
+              className="size-4"
+              fill={getLike(product.id) ? 'red' : 'none'}
+              color={getLike(product.id) ? 'red' : 'currentColor'}
+            />
           </Button>
         </figure>
       </CardHeader>
