@@ -6,13 +6,16 @@ import Footer from '@/components/Footer';
 import Providers from '@/utils/providers';
 
 import './globals.css';
+import ShoppingCartModal from '@/components/ShoppingCartModal';
+import { ThemeProvider } from '@/components/ThemeProvider';
+import { siteConfig } from '@/config/site';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Ice Cream Land',
+  title: siteConfig.name,
   // TODO: generated description
-  description: 'Some description',
+  description: siteConfig.description,
 };
 
 export default function RootLayout({
@@ -23,13 +26,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <div className="relative flex min-h-screen flex-col bg-background">
-          <Providers>
-            <Navbar />
-            {children}
-            <Footer />
-          </Providers>
-        </div>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <div className="relative flex min-h-screen flex-col bg-background">
+            <Providers>
+              <Navbar />
+              <ShoppingCartModal />
+              {children}
+              <Footer />
+            </Providers>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
