@@ -1,4 +1,5 @@
 import { create } from 'zustand';
+import { Region } from '@/utils/api-requests';
 
 interface BasicStore {
   isCartModalOpen: boolean;
@@ -7,6 +8,8 @@ interface BasicStore {
   getLike: (id: string) => boolean;
   addLike: (id: string) => void;
   removeLike: (id: string) => void;
+  selectedRegion: Region | undefined;
+  setSelectedRegion: (region: Region | undefined) => void;
 }
 
 const useBasicStore = create<BasicStore>((set, get) => ({
@@ -22,6 +25,8 @@ const useBasicStore = create<BasicStore>((set, get) => ({
     set((state) => ({
       likes: state.likes.filter((likeId) => likeId !== id),
     })),
+  selectedRegion: undefined,
+  setSelectedRegion: (selectedRegion) => set({ selectedRegion }),
 }));
 
 export default useBasicStore;
