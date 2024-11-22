@@ -11,6 +11,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/config/site';
 import { QueryClient } from '@tanstack/query-core';
 import { getRegions } from '@/utils/api-requests';
+import LikesSidebar from '@/components/LikesSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -40,6 +41,7 @@ export default async function RootLayout({
             <Providers>
               <Navbar />
               <ShoppingCartModal />
+              <LikesSidebar />
               {children}
               <Footer />
             </Providers>
