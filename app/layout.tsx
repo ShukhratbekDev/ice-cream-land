@@ -9,6 +9,9 @@ import './globals.css';
 import ShoppingCartModal from '@/components/ShoppingCartModal';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/config/site';
+import { QueryClient } from '@tanstack/query-core';
+import { getRegions } from '@/utils/api-requests';
+import LikesSidebar from '@/components/LikesSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,11 +21,18 @@ export const metadata: Metadata = {
   description: siteConfig.description,
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery({
+    queryKey: ['hydrate-regions'],
+    queryFn: getRegions,
+  });
+
   return (
     <html lang="en">
       <body className={inter.className}>
@@ -31,6 +41,7 @@ export default function RootLayout({
             <Providers>
               <Navbar />
               <ShoppingCartModal />
+              <LikesSidebar />
               {children}
               <Footer />
             </Providers>
