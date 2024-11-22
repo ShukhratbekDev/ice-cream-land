@@ -95,8 +95,10 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-2">
-        <Input type="number" min="1" value={quantity} onChange={handleQuantityChange} className="w-20" />
-        <Button className="flex" onClick={handleAddToCart} disabled={itemInCart?.quantity === quantity}>
+        {itemInCart && (
+          <Input type="number" min="1" value={quantity} onChange={handleQuantityChange} className="w-20" />
+        )}
+        <Button className="flex-grow" onClick={handleAddToCart} disabled={itemInCart?.quantity === quantity}>
           <ShoppingCart className="mr-2 h-4 w-4" /> {itemInCart ? 'Update' : 'Add to Cart'}
         </Button>
         {itemInCart && (
