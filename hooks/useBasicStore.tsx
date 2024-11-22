@@ -3,7 +3,7 @@ import { Region } from '@/utils/api-requests';
 
 interface BasicStore {
   isCartModalOpen: boolean;
-  setCartModalState: (state: boolean) => void;
+  setCartSidebarState: (state: boolean) => void;
 
   likes: Array<string>;
   getLike: (id: string) => boolean;
@@ -18,7 +18,7 @@ interface BasicStore {
 
 const useBasicStore = create<BasicStore>((set, get) => ({
   isCartModalOpen: false,
-  setCartModalState: (state) => set({ isCartModalOpen: state }),
+  setCartSidebarState: (state) => set({ isCartModalOpen: state }),
 
   likes: [],
   getLike: (id) => {

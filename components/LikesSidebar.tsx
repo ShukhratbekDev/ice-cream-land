@@ -28,7 +28,6 @@ const LikesSidebar = () => {
             Likes
           </SheetTitle>
         </SheetHeader>
-
         <div className="h-full flex flex-col justify-between">
           <div className="mt-8 flex-1 overflow-y-auto">
             <div className="grid grid-flow-row auto-rows-max gap-4">

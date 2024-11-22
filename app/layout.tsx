@@ -6,7 +6,7 @@ import Footer from '@/components/Footer';
 import Providers from '@/utils/providers';
 
 import './globals.css';
-import ShoppingCartModal from '@/components/ShoppingCartModal';
+import ShoppingCartSidebar from '@/components/ShoppingCartSidebar';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/config/site';
 import { QueryClient } from '@tanstack/query-core';
@@ -40,7 +40,7 @@ export default async function RootLayout({
           <div className="relative flex min-h-screen flex-col bg-background">
             <Providers>
               <Navbar />
-              <ShoppingCartModal />
+              <ShoppingCartSidebar />
               <LikesSidebar />
               {children}
               <Footer />
