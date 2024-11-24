@@ -38,7 +38,7 @@ const LikesSidebar = () => {
                   <div key={product.id} className="flex items-center space-x-4 overflow-hidden">
                     <div className="flex-none w-[100px] group">
                       <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
-                        <Image src={product.image} alt={product.name} className="object-cover" fill sizes="100vw" />
+                        <Image src={product.imageUrl} alt={product.name} className="object-cover" fill sizes="100vw" />
                       </figure>
                     </div>
                     <div>

@@ -1,19 +1,23 @@
+import { selectProductsSchema, selectRegionsSchema } from '@/db/schema';
+
 type RegionalPrice = {
   regionId: string;
   price: number;
   currency: string;
 };
-export type Product = {
-  id: string;
+
+type Option = {
+  id: number;
   name: string;
-  description: string;
+};
+
+export type Product = Omit<selectProductsSchema, 'price' | 'rating'> & {
+  ingredients: Option[];
+  regionalPrices: RegionalPrice[];
   price: number;
-  currency: string;
-  regionalPrices?: RegionalPrice[];
   rating: number;
-  image: string;
-  ingredients: string[];
-  category: string;
+  category: Option;
+  [key: string]: unknown;
 };
 
 export async function getProducts() {
@@ -21,15 +25,12 @@ export async function getProducts() {
   return (await res.json()) as Product[];
 }
 
-export type Region = {
-  id: string;
-  name: string;
-  default?: boolean;
-  flagUrl?: string;
-  currency?: string;
-};
+export async function getProduct(id: number) {
+  const res = await fetch(`/api/products/${id}`);
+  return (await res.json()) as Product;
+}
 
 export async function getRegions() {
   const res = await fetch('/api/regions');
-  return (await res.json()) as Region[];
+  return (await res.json()) as selectRegionsSchema[];
 }

@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { getProducts } from '@/utils/api-requests';
-import { useQuery } from '@tanstack/react-query';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import ProductCard from '@/components/ProductCard';
+import { useQuery } from '@tanstack/react-query';
 
 const defaultTab = 'All';
 
@@ -14,7 +14,7 @@ const ProductsList = () => {
     queryFn: () => getProducts(),
     staleTime: 10 * 1000,
   });
-  const categories = [defaultTab, ...new Set(data?.map((product) => product.category))].sort();
+  const categories = [defaultTab, ...new Set(data?.map((product) => product.category.name))].sort();
 
   return (
     <div className="hidden flex-col md:flex">
@@ -30,7 +30,7 @@ const ProductsList = () => {
           {categories.map((category) => (
             <TabsContent key={`tab-content-${category}`} value={category} className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                {(category === 'All' ? data : data?.filter((product) => product.category === category))?.map(
+                {(category === 'All' ? data : data?.filter((product) => product.category.name === category))?.map(
                   (product) => <ProductCard product={product} key={category + product.id} />
                 )}
               </div>

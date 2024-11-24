@@ -9,6 +9,7 @@ export const products = [
     description: 'A timeless classic made with the finest vanilla beans for a rich, creamy experience.',
     ingredients: ['Cream', 'Sugar', 'Vanilla Beans', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '2',
@@ -20,6 +21,7 @@ export const products = [
     description: 'Decadent chocolate ice cream with a luscious fudge swirl.',
     ingredients: ['Cream', 'Sugar', 'Cocoa', 'Fudge Sauce', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '3',
@@ -31,6 +33,7 @@ export const products = [
     description: 'Creamy and delicious with real strawberry pieces for a fruity burst.',
     ingredients: ['Cream', 'Sugar', 'Strawberries', 'Egg Yolks'],
     category: 'Classic',
+    isHot: true,
   },
   {
     id: '4',
@@ -42,6 +45,7 @@ export const products = [
     description: 'Refreshing mint ice cream loaded with dark chocolate chips.',
     ingredients: ['Cream', 'Sugar', 'Mint Extract', 'Dark Chocolate Chips', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '5',
@@ -53,6 +57,7 @@ export const products = [
     description: 'Creamy vanilla ice cream mixed with crunchy cookie pieces.',
     ingredients: ['Cream', 'Sugar', 'Vanilla Extract', 'Chocolate Cookies', 'Egg Yolks'],
     category: 'Classic',
+    isHot: true,
   },
   {
     id: '6',
@@ -64,6 +69,7 @@ export const products = [
     description: 'Rich and creamy ice cream with roasted pecan pieces.',
     ingredients: ['Cream', 'Sugar', 'Pecans', 'Butter', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '7',
@@ -75,6 +81,7 @@ export const products = [
     description: 'Chocolate ice cream with marshmallows and almonds.',
     ingredients: ['Cream', 'Sugar', 'Cocoa', 'Marshmallows', 'Almonds', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '8',
@@ -86,6 +93,7 @@ export const products = [
     description: 'Rich and aromatic coffee-flavored ice cream.',
     ingredients: ['Cream', 'Sugar', 'Coffee Extract', 'Egg Yolks'],
     category: 'Classic',
+    isHot: false,
   },
   {
     id: '9',
@@ -97,6 +105,7 @@ export const products = [
     description: 'Celebrate the fall season with this warm, spiced pumpkin ice cream.',
     ingredients: ['Cream', 'Sugar', 'Pumpkin Puree', 'Cinnamon', 'Nutmeg', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: false,
   },
   {
     id: '10',
@@ -108,6 +117,7 @@ export const products = [
     description: 'Rich and creamy eggnog-flavored ice cream for the winter holidays.',
     ingredients: ['Cream', 'Sugar', 'Eggnog', 'Nutmeg', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: false,
   },
   {
     id: '34',
@@ -119,6 +129,7 @@ export const products = [
     description: 'A festive holiday treat with peppermint ice cream and candy cane pieces.',
     ingredients: ['Cream', 'Sugar', 'Peppermint Extract', 'Candy Cane Pieces', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: false,
   },
   {
     id: '11',
@@ -130,6 +141,7 @@ export const products = [
     description: 'A mix of refreshing berries for a delightful spring treat.',
     ingredients: ['Cream', 'Sugar', 'Mixed Berries', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: true,
   },
   {
     id: '12',
@@ -141,6 +153,7 @@ export const products = [
     description: 'A tangy and refreshing citrus blend perfect for summer.',
     ingredients: ['Cream', 'Sugar', 'Citrus Extract', 'Lemon Zest', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: false,
   },
   {
     id: '13',
@@ -152,6 +165,7 @@ export const products = [
     description: 'A rich and nutty flavor with a hint of maple syrup.',
     ingredients: ['Cream', 'Sugar', 'Maple Syrup', 'Walnuts', 'Egg Yolks'],
     category: 'Seasonal',
+    isHot: false,
   },
   {
     id: '14',
@@ -163,6 +177,7 @@ export const products = [
     description: 'Creamy coconut-based ice cream with a tropical coconut flavor.',
     ingredients: ['Coconut Milk', 'Coconut Cream', 'Cane Sugar', 'Vanilla Extract'],
     category: 'Vegan',
+    isHot: true,
   },
   {
     id: '15',
@@ -174,6 +189,7 @@ export const products = [
     description: 'Rich and creamy chocolate ice cream with almond pieces.',
     ingredients: ['Almond Milk', 'Cocoa', 'Cane Sugar', 'Almond Pieces'],
     category: 'Vegan',
+    isHot: false,
   },
   {
     id: '16',
@@ -185,6 +201,7 @@ export const products = [
     description: 'Refreshing and fruity mango sorbet made with real mangoes.',
     ingredients: ['Mango Puree', 'Cane Sugar', 'Water'],
     category: 'Vegan',
+    isHot: true,
   },
   {
     id: '17',
@@ -196,6 +213,7 @@ export const products = [
     description: 'A refreshing sorbet with the antioxidant benefits of blueberries and acai berries.',
     ingredients: ['Blueberry Puree', 'Acai Berry Puree', 'Cane Sugar', 'Water'],
     category: 'Vegan',
+    isHot: false,
   },
   {
     id: '18',
@@ -207,6 +225,7 @@ export const products = [
     description: 'Lovely pistachio flavor made creamy with almond milk.',
     ingredients: ['Almond Milk', 'Cane Sugar', 'Pistachios'],
     category: 'Vegan',
+    isHot: false,
   },
   {
     id: '19',
@@ -218,6 +237,7 @@ export const products = [
     description: 'A vegan take on the classic vanilla flavor made with almond milk.',
     ingredients: ['Almond Milk', 'Vanilla Extract', 'Cane Sugar'],
     category: 'Vegan',
+    isHot: false,
   },
   {
     id: '20',
@@ -229,6 +249,7 @@ export const products = [
     description: 'Tangy raspberry sorbet swirled with rich raspberry sauce.',
     ingredients: ['Raspberry Puree', 'Cane Sugar', 'Water'],
     category: 'Vegan',
+    isHot: true,
   },
   {
     id: '21',
@@ -240,6 +261,7 @@ export const products = [
     description: 'Creamy caramel ice cream with salted caramel swirls and crunchy pretzel pieces.',
     ingredients: ['Cream', 'Sugar', 'Caramel Sauce', 'Pretzels', 'Sea Salt', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: false,
   },
   {
     id: '22',
@@ -251,6 +273,7 @@ export const products = [
     description: 'A floral and sweet treat made with real lavender and honey.',
     ingredients: ['Cream', 'Sugar', 'Lavender', 'Honey', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: false,
   },
   {
     id: '23',
@@ -262,6 +285,7 @@ export const products = [
     description: 'Luxurious cherry ice cream with a hint of bourbon.',
     ingredients: ['Cream', 'Sugar', 'Cherries', 'Bourbon', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: true,
   },
   {
     id: '24',
@@ -273,6 +297,7 @@ export const products = [
     description: 'Unique and delightful with the delicate flavor of rose and crunchy pistachio.',
     ingredients: ['Cream', 'Sugar', 'Rosewater', 'Pistachios', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: false,
   },
   {
     id: '25',
@@ -284,6 +309,7 @@ export const products = [
     description: 'Vibrant and earthy flavor made with real matcha green tea.',
     ingredients: ['Cream', 'Sugar', 'Matcha Powder', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: false,
   },
   {
     id: '26',
@@ -306,6 +332,7 @@ export const products = [
     description: 'A bold combination of chocolate, hazelnut, and a hint of spice.',
     ingredients: ['Cream', 'Sugar', 'Cocoa', 'Hazelnuts', 'Chili Pepper', 'Egg Yolks'],
     category: 'Limited Edition',
+    isHot: true,
   },
   {
     id: '28',
@@ -317,6 +344,7 @@ export const products = [
     description: 'The classic vanilla taste with no added sugar.',
     ingredients: ['Cream', 'Vanilla Extract', 'Sugar Substitute (Erythritol, Stevia)', 'Egg Yolks'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
   {
     id: '29',
@@ -328,6 +356,7 @@ export const products = [
     description: 'Creamy chocolate ice cream with reduced fat.',
     ingredients: ['Low-Fat Milk', 'Cocoa', 'Sugar', 'Egg Yolks'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
   {
     id: '30',
@@ -339,6 +368,7 @@ export const products = [
     description: 'Rich coffee ice cream with keto-friendly ingredients.',
     ingredients: ['Cream', 'Coffee Extract', 'Sugar Substitute (Erythritol, Stevia)', 'Egg Yolks'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
   {
     id: '31',
@@ -350,6 +380,7 @@ export const products = [
     description: "Delicious brownie batter ice cream that's gluten-free.",
     ingredients: ['Cream', 'Sugar', 'Cocoa', 'Gluten-Free Brownie Pieces', 'Egg Yolks'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
   {
     id: '32',
@@ -361,6 +392,7 @@ export const products = [
     description: 'Rich and creamy dark chocolate without any dairy.',
     ingredients: ['Coconut Milk', 'Cocoa', 'Cane Sugar'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
   {
     id: '33',
@@ -372,5 +404,6 @@ export const products = [
     description: 'Creamy peanut butter ice cream with extra protein.',
     ingredients: ['Cream', 'Sugar', 'Peanut Butter', 'Whey Protein'],
     category: 'Special Dietary Options',
+    isHot: false,
   },
 ];

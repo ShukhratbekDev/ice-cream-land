@@ -5,10 +5,10 @@ interface BasicStore {
   isCartModalOpen: boolean;
   setCartSidebarState: (state: boolean) => void;
 
-  likes: Array<string>;
-  getLike: (id: string) => boolean;
-  addLike: (id: string) => void;
-  removeLike: (id: string) => void;
+  likes: Array<number>;
+  getLike: (id: number) => boolean;
+  addLike: (id: number) => void;
+  removeLike: (id: number) => void;
   isLikesSidebarOpen: boolean;
   setLikesSidebarState: (state: boolean) => void;
 
