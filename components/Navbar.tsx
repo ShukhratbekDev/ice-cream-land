@@ -12,7 +12,12 @@ import { siteConfig } from '@/config/site';
 import LikesButton from '@/components/LikesButton';
 import RegionDropdownMenu from '@/components/RegionDropdownMenu';
 
+import { SignUpButton, UserButton, useUser } from '@clerk/nextjs';
+import { SignInButton } from '@clerk/clerk-react';
+
 const Navbar = () => {
+  const { isSignedIn } = useUser();
+
   return (
     <section className="justify-items-center py-3">
       <div className="container">
@@ -29,8 +34,19 @@ const Navbar = () => {
           <div className="flex gap-2">
             <RegionDropdownMenu />
             <ModeSwitcher />
-            <LikesButton />
-            <CartButton />
+            {isSignedIn && (
+              <>
+                <LikesButton />
+                <CartButton />
+              </>
+            )}
+            <UserButton />
+            {!isSignedIn && (
+              <>
+                <SignInButton />
+                <SignUpButton />
+              </>
+            )}
           </div>
         </nav>
         <div className="block lg:hidden">
