@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import React, { useEffect, useState } from 'react';
-import { HeartIcon, ShoppingCart, Trash2 } from 'lucide-react';
+import { Flame, HeartIcon, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
@@ -10,6 +10,7 @@ import { useCart } from 'react-use-cart';
 import useBasicStore from '@/hooks/useBasicStore';
 import { Product } from '@/utils/api-requests';
 import Link from 'next/link';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
 type ProductCardProps = {
   product: Product;
@@ -78,7 +79,17 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <CardContent>
         <div className="mb-4">
           <CardTitle>
-            <Link href={`/products/${product.id}`}>{product.name}</Link>
+            <Link href={`/products/${product.id}`} className="flex gap-2">
+              {product.name}
+              {product.isHot && (
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Flame className="size-4" fill="red" color="red" />
+                  </TooltipTrigger>
+                  <TooltipContent>Hot Sale</TooltipContent>
+                </Tooltip>
+              )}
+            </Link>
           </CardTitle>
           <div className="flex items-center mt-2 gap-1">
             <RatingStars rating={product.rating} />
