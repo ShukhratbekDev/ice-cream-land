@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import * as regions from '@/config/regions.json';
+import { regions } from '@/config/regions';
 
 export async function GET() {
   return NextResponse.json(regions);

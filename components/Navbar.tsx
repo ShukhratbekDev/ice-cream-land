@@ -10,6 +10,7 @@ import CartButton from '@/components/CartButton';
 import ModeSwitcher from '@/components/ModeSwitcher';
 import { siteConfig } from '@/config/site';
 import LikesButton from '@/components/LikesButton';
+import RegionDropdownMenu from '@/components/RegionDropdownMenu';
 
 const Navbar = () => {
   return (
@@ -26,6 +27,7 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex gap-2">
+            <RegionDropdownMenu />
             <ModeSwitcher />
             <LikesButton />
             <CartButton />

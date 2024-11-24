@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
-import React, { useState } from 'react';
-import { HeartIcon, ShoppingCart } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { HeartIcon, ShoppingCart, Trash2 } from 'lucide-react';
 import { Product } from '@/utils/api-requests';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -16,8 +16,17 @@ type ProductCardProps = {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [quantity, setQuantity] = useState(1);
-  const { addItem } = useCart();
-  const { getLike, addLike, removeLike } = useBasicStore();
+  const { items, updateItemQuantity, addItem, removeItem } = useCart();
+  const { getLike, addLike, removeLike, selectedRegion } = useBasicStore();
+  const regionalPrice = selectedRegion
+    ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
+    : undefined;
+
+  const price = regionalPrice
+    ? `${regionalPrice.price.toFixed(2)} ${regionalPrice.currency}`
+    : `$ ${product.price.toFixed(2)}`;
+
+  const itemInCart = items.find((item) => item.id === product.id);
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -25,8 +34,23 @@ const ProductCard = ({ product }: ProductCardProps) => {
   };
 
   const handleAddToCart = () => {
-    addItem(product, quantity);
+    if (itemInCart) {
+      updateItemQuantity(product.id, quantity);
+    } else {
+      addItem(product, quantity);
+    }
   };
+
+  const handleRemoveItem = () => {
+    removeItem(product.id);
+    setQuantity(1);
+  };
+
+  useEffect(() => {
+    if (itemInCart && itemInCart.quantity) {
+      setQuantity(itemInCart.quantity);
+    }
+  }, [itemInCart, product.id]);
 
   return (
     <Card className="max-w-sm overflow-hidden">
@@ -67,14 +91,21 @@ const ProductCard = ({ product }: ProductCardProps) => {
           ))}
         </div>
         <div className="flex justify-between items-center mt-4">
-          <span className="text-3xl font-bold">${product.price.toFixed(2)}</span>
+          <span className="text-3xl font-bold">{price}</span>
         </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-2">
-        <Input type="number" min="1" value={quantity} onChange={handleQuantityChange} className="w-20" />
-        <Button className="flex-grow" onClick={handleAddToCart}>
-          <ShoppingCart className="mr-2 h-4 w-4" /> Add to Cart
+        {itemInCart && (
+          <Input type="number" min="1" value={quantity} onChange={handleQuantityChange} className="w-20" />
+        )}
+        <Button className="flex-grow" onClick={handleAddToCart} disabled={itemInCart?.quantity === quantity}>
+          <ShoppingCart className="mr-2 h-4 w-4" /> {itemInCart ? 'Update' : 'Add to Cart'}
         </Button>
+        {itemInCart && (
+          <Button className="flex" onClick={handleRemoveItem} variant="secondary">
+            <Trash2 />
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

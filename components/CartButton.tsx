@@ -8,16 +8,18 @@ import useBasicStore from '@/hooks/useBasicStore';
 
 const CartButton = () => {
   const { totalUniqueItems } = useCart();
-  const { setCartModalState } = useBasicStore();
+  const { setCartSidebarState } = useBasicStore();
 
   return (
     <div className="relative inline-block">
-      <Button variant="ghost" size="icon" onClick={() => setCartModalState(true)}>
+      <Button variant="ghost" size="icon" onClick={() => setCartSidebarState(true)}>
         <ShoppingCart className="size-4" />
       </Button>
-      <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full px-2 py-1 text-[.5rem] font-medium flex items-center justify-center">
-        {totalUniqueItems}
-      </div>
+      {totalUniqueItems > 0 && (
+        <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full px-2 py-1 text-[.5rem] font-medium flex items-center justify-center">
+          {totalUniqueItems}
+        </div>
+      )}
     </div>
   );
 };
