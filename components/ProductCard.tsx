@@ -11,12 +11,14 @@ import useBasicStore from '@/hooks/useBasicStore';
 import { Product } from '@/utils/api-requests';
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useUser } from '@clerk/nextjs';
 
 type ProductCardProps = {
   product: Product;
 };
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { isSignedIn } = useUser();
   const [quantity, setQuantity] = useState(1);
   const { items, updateItemQuantity, addItem, removeItem } = useCart();
   const { getLike, addLike, removeLike, selectedRegion } = useBasicStore();
@@ -62,18 +64,20 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Badge variant="secondary" className="absolute top-3 left-3 text-sm">
             {product.category.name}
           </Badge>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
-            onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
-          >
-            <HeartIcon
-              className="size-4"
-              fill={getLike(product.id) ? 'red' : 'none'}
-              color={getLike(product.id) ? 'red' : 'currentColor'}
-            />
-          </Button>
+          {isSignedIn && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
+              onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
+            >
+              <HeartIcon
+                className="size-4"
+                fill={getLike(product.id) ? 'red' : 'none'}
+                color={getLike(product.id) ? 'red' : 'currentColor'}
+              />
+            </Button>
+          )}
         </figure>
       </CardHeader>
       <CardContent>
