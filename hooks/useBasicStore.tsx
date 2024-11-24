@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { Region } from '@/utils/api-requests';
+import { selectRegionsSchema } from '@/db/schema';
 
 interface BasicStore {
   isCartModalOpen: boolean;
@@ -12,8 +12,8 @@ interface BasicStore {
   isLikesSidebarOpen: boolean;
   setLikesSidebarState: (state: boolean) => void;
 
-  selectedRegion: Region | undefined;
-  setSelectedRegion: (region: Region | undefined) => void;
+  selectedRegion: selectRegionsSchema | undefined;
+  setSelectedRegion: (region: selectRegionsSchema | undefined) => void;
 }
 
 const useBasicStore = create<BasicStore>((set, get) => ({
