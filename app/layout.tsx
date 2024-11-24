@@ -1,5 +1,8 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
+
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 import './globals.css';
 import { siteConfig } from '@/config/site';
@@ -19,7 +22,13 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <ClerkProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
+      </body>
     </html>
   );
 }

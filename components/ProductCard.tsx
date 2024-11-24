@@ -66,9 +66,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
           </Badge>
           {isSignedIn && (
             <Button
-              variant="ghost"
+              variant="outline"
               size="icon"
-              className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
+              className="absolute top-3 end-3 rounded-full"
               onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
             >
               <HeartIcon
