@@ -5,3 +5,6 @@ export * from './productIngredients';
 export * from './productLocalizations';
 export * from './products';
 export * from './regions';
+export * from './likes';
+export * from './users';
+export * from './relations';

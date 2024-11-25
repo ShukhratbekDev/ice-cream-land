@@ -1,5 +1,5 @@
 import { QueryClient, dehydrate, HydrationBoundary } from '@tanstack/react-query';
-import { getRegions } from '@/utils/api-requests';
+import { getProducts, getRegions } from '@/utils/api-requests';
 import React from 'react';
 
 export default async function Hydration({ children }: { children: React.ReactNode }) {
@@ -12,9 +12,16 @@ export default async function Hydration({ children }: { children: React.ReactNod
   });
   await Promise.all([
     queryClient.prefetchQuery({
+      queryKey: ['products'],
+      queryFn: () => getProducts(),
+    }),
+  ]);
+  await Promise.all([
+    queryClient.prefetchQuery({
       queryKey: ['regions'],
       queryFn: () => getRegions(),
     }),
   ]);
+
   return <HydrationBoundary state={dehydrate(queryClient)}>{children}</HydrationBoundary>;
 }

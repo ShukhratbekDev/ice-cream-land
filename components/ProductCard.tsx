@@ -1,17 +1,18 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import React, { useEffect, useState } from 'react';
-import { Flame, HeartIcon, ShoppingCart, Trash2 } from 'lucide-react';
+import { Flame, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import RatingStars from '@/components/RatingStars';
 import { useCart } from 'react-use-cart';
 import useBasicStore from '@/hooks/useBasicStore';
-import { Product } from '@/utils/api-requests';
 import Link from 'next/link';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { useUser } from '@clerk/nextjs';
+import LikeButton from '@/components/LikeButton';
+import { Product } from '@/db/schema';
 
 type ProductCardProps = {
   product: Product;
@@ -21,7 +22,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { isSignedIn } = useUser();
   const [quantity, setQuantity] = useState(1);
   const { items, updateItemQuantity, addItem, removeItem } = useCart();
-  const { getLike, addLike, removeLike, selectedRegion } = useBasicStore();
+  const { selectedRegion } = useBasicStore();
   const regionalPrice = selectedRegion
     ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
     : undefined;
@@ -64,20 +65,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           <Badge variant="secondary" className="absolute top-3 left-3 text-sm">
             {product.category.name}
           </Badge>
-          {isSignedIn && (
-            <Button
-              variant="outline"
-              size="icon"
-              className="absolute top-3 end-3 rounded-full"
-              onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
-            >
-              <HeartIcon
-                className="size-4"
-                fill={getLike(product.id) ? 'red' : 'none'}
-                color={getLike(product.id) ? 'red' : 'currentColor'}
-              />
-            </Button>
-          )}
+          {isSignedIn && <LikeButton product={product} />}
         </figure>
       </CardHeader>
       <CardContent>

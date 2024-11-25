@@ -1,8 +1,6 @@
 import { createInsertSchema, createSelectSchema } from 'drizzle-zod';
 import { boolean, numeric, pgTable, serial, text, timestamp, varchar } from 'drizzle-orm/pg-core';
 import { categories } from '@/db/schema/categories';
-import { relations } from 'drizzle-orm';
-import { productIngredients } from '@/db/schema/productIngredients';
 import z from 'zod';
 
 export const products = pgTable('products', {
@@ -19,14 +17,24 @@ export const products = pgTable('products', {
   updatedAt: timestamp().notNull().defaultNow(),
 });
 
-export const productsRelations = relations(products, ({ one, many }) => ({
-  category: one(categories, {
-    fields: [products.categoryId],
-    references: [categories.id],
-  }),
-  productIngredients: many(productIngredients),
-}));
-
 export const insertProductsSchema = createInsertSchema(products);
 export const selectProductsSchema = createSelectSchema(products);
-export type selectProductsSchema = z.infer<typeof selectProductsSchema>;
+
+type RegionalPrice = {
+  regionId: string;
+  price: number;
+  currency: string;
+};
+
+type Option = {
+  id: number;
+  name: string;
+};
+export type Product = Omit<z.infer<typeof selectProductsSchema>, 'price' | 'rating'> & {
+  isLiked: boolean;
+  ingredients: Option[];
+  regionalPrices: RegionalPrice[];
+  price: number;
+  rating: number;
+  category: Option;
+};

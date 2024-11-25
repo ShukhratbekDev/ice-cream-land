@@ -3,13 +3,13 @@
 import { HeartIcon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import Logo from './Logo';
+import Logo from '@/components/Logo';
 import NavMenus from '@/components/NavMenus';
 import React from 'react';
 import CartButton from '@/components/CartButton';
 import ModeSwitcher from '@/components/ModeSwitcher';
 import { siteConfig } from '@/config/site';
-import LikesButton from '@/components/LikesButton';
+import LikesSidebarToggle from './LikesSidebarToggle';
 import RegionDropdownMenu from '@/components/RegionDropdownMenu';
 
 import { SignUpButton, UserButton, useUser } from '@clerk/nextjs';
@@ -36,7 +36,7 @@ const Navbar = () => {
             <ModeSwitcher />
             {isSignedIn && (
               <>
-                <LikesButton />
+                <LikesSidebarToggle />
                 <CartButton />
               </>
             )}

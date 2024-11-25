@@ -1,5 +1,4 @@
 import { createInsertSchema } from 'drizzle-zod';
-
 import { pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const categories = pgTable('categories', {

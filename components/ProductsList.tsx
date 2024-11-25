@@ -10,7 +10,7 @@ const defaultTab = 'All';
 
 const ProductsList = () => {
   const { data } = useQuery({
-    queryKey: ['hydrate-products'],
+    queryKey: ['products'],
     queryFn: () => getProducts(),
     staleTime: 10 * 1000,
   });

@@ -2,15 +2,18 @@ import { NextResponse } from 'next/server';
 import { regions } from '@/config/regions';
 import { convertPrice } from '@/lib/convertPrice';
 import { db } from '@/db';
+import { auth } from '@clerk/nextjs/server';
 
 export async function GET() {
+  const { userId }: { userId: string | null } = await auth();
   const productData = await db.query.products.findMany({
     columns: {
       categoryId: false,
     },
     with: {
       category: { columns: { id: true, name: true } },
-      productIngredients: {
+      ...(userId ? { likes: { where: (likes, { eq }) => eq(likes.userId, userId) } } : {}),
+      ingredients: {
         columns: {
           ingredientId: false,
           productId: false,
@@ -32,7 +35,8 @@ export async function GET() {
       const basePrice = Number(product.price);
       return {
         ...product,
-        ingredients: product.productIngredients.map((item) => item.ingredient),
+        isLiked: !!product?.likes?.find((like) => like.userId === userId),
+        ingredients: product.ingredients.map((item) => item.ingredient),
         price: basePrice,
         regionalPrices: regions.map((region) => {
           const regionalPrice = convertPrice(basePrice, region.currency);

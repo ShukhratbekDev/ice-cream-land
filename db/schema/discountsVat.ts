@@ -2,7 +2,6 @@ import { createInsertSchema } from 'drizzle-zod';
 import z from 'zod';
 import { char, numeric, pgTable, serial, timestamp } from 'drizzle-orm/pg-core';
 import { regions } from '@/db/schema/regions';
-import { relations } from 'drizzle-orm';
 
 export const discountsVat = pgTable('discounts_vat', {
   id: serial().primaryKey(),
@@ -15,13 +14,6 @@ export const discountsVat = pgTable('discounts_vat', {
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });
-
-export const discountsVatRelations = relations(discountsVat, ({ one }) => ({
-  region: one(regions, {
-    fields: [discountsVat.regionId],
-    references: [regions.id],
-  }),
-}));
 
 export const insertDiscountsVatSchema = createInsertSchema(discountsVat);
 

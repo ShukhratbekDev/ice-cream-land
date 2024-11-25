@@ -15,7 +15,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     },
     with: {
       category: { columns: { id: true, name: true } },
-      productIngredients: {
+      ingredients: {
         columns: {
           ingredientId: false,
           productId: false,
@@ -35,7 +35,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
 
   return NextResponse.json({
     ...productData,
-    ingredients: productData?.productIngredients.map((item) => item.ingredient),
+    ingredients: productData?.ingredients.map((item) => item.ingredient),
     price: basePrice,
     regionalPrices: regions.map((region) => {
       const regionalPrice = convertPrice(basePrice, region.currency);

@@ -15,7 +15,7 @@ const ShoppingCartSidebar = () => {
   const { items, removeItem } = useCart();
   const { isCartModalOpen, setCartSidebarState, selectedRegion } = useBasicStore();
   const { data } = useQuery({
-    queryKey: ['hydrate-products'],
+    queryKey: ['products'],
     queryFn: () => getProducts(),
     staleTime: 10 * 1000,
   });
