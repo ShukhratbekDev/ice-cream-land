@@ -14,19 +14,19 @@ export async function GET() {
 
   if (user) {
     const userData = await db.query.users.findFirst({
-      where: eq(users.id, user.id),
+      where: eq(users.userId, user.id),
     });
 
     if (!userData) {
       await db
         .insert(users)
-        .values({ id: user.id, username: user.username, firstName: user.firstName, lastName: user.lastName });
+        .values({ userId: user.id, username: user.username, firstName: user.firstName, lastName: user.lastName });
     }
   }
 
   const userData = await db.query.users.findFirst({
     columns: {},
-    where: eq(users.id, userId),
+    where: eq(users.userId, userId),
     with: { likes: { columns: {}, with: { likedProduct: true } } },
   });
 

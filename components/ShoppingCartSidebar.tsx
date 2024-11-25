@@ -16,9 +16,9 @@ const ShoppingCartSidebar = () => {
   const { data } = useProducts();
 
   const getPrice = (itemInCart: Item) => {
-    const product = data?.find((item) => itemInCart.id === String(item.id));
+    const product = data?.find((item) => itemInCart.productId === String(item.productId));
     const regionalPrice = selectedRegion
-      ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
+      ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
       : undefined;
     return regionalPrice
       ? `${regionalPrice.price.toFixed(2)} ${regionalPrice.currency}`
@@ -28,9 +28,9 @@ const ShoppingCartSidebar = () => {
   const getCartTotal = () => {
     const total = items
       .reduce((acc, itemInCart) => {
-        const product = data?.find((item) => itemInCart.id === String(item.id));
+        const product = data?.find((item) => itemInCart.id === String(item.productId));
         const regionalPrice = selectedRegion
-          ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
+          ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
           : undefined;
         acc += (regionalPrice?.price ?? itemInCart.price) * (itemInCart?.quantity ?? 1);
         return acc;
@@ -53,7 +53,7 @@ const ShoppingCartSidebar = () => {
                 <h1 className="py-6">You do not have any items</h1>
               ) : (
                 items?.map((product) => (
-                  <div key={product.id} className="flex items-center space-x-4 overflow-hidden">
+                  <div key={product.productId} className="flex items-center space-x-4 overflow-hidden">
                     <div className="flex-none w-[100px] group">
                       <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
                         <Image src={product.imageUrl} alt={product.name} className="object-cover" fill sizes="100vw" />
@@ -68,7 +68,7 @@ const ShoppingCartSidebar = () => {
                       </div>
                     </div>
                     <div>
-                      <Button onClick={() => removeItem(product.id)} variant="ghost" size="icon">
+                      <Button onClick={() => removeItem(product.productId)} variant="ghost" size="icon">
                         <Trash2 />
                       </Button>
                     </div>

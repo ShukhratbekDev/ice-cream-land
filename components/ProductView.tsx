@@ -5,8 +5,8 @@ import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
 import { useProduct } from '@/hooks/useProduct';
 
-const ProductView = ({ id }: { id: number }) => {
-  const { data: product } = useProduct(id);
+const ProductView = ({ productId }: { productId: number }) => {
+  const { data: product } = useProduct(productId);
 
   return (
     product && (

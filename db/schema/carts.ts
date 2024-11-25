@@ -1,11 +1,12 @@
 import { createInsertSchema } from 'drizzle-zod';
 import { pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
+import { users } from '@/db/schema/users';
 
-export const categories = pgTable('categories', {
-  categoryId: serial().primaryKey(),
-  name: varchar().unique().notNull(),
+export const carts = pgTable('carts', {
+  cartId: serial().primaryKey(),
+  userId: varchar().references(() => users.userId),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
 });
 
-export const insertCategoriesSchema = createInsertSchema(categories);
+export const insertCartSchema = createInsertSchema(carts);

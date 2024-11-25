@@ -36,7 +36,7 @@ const LikesSidebar = () => {
                 <h1 className="py-6">You do not have any items</h1>
               ) : (
                 likedProducts?.map((product) => (
-                  <div key={product.id} className="flex items-center space-x-4 overflow-hidden">
+                  <div key={product.productId} className="flex items-center space-x-4 overflow-hidden">
                     <div className="flex-none w-[100px] group">
                       <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
                         <Image src={product.imageUrl} alt={product.name} className="object-cover" fill sizes="100vw" />

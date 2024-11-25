@@ -4,14 +4,14 @@ import { categories } from '@/db/schema/categories';
 import z from 'zod';
 
 export const products = pgTable('products', {
-  id: serial().primaryKey(),
+  productId: serial().primaryKey(),
   name: varchar().notNull(),
   price: numeric({ precision: 10, scale: 2 }).notNull(),
   currency: varchar().notNull().default('USD'),
   rating: numeric({ precision: 3, scale: 1 }).notNull(),
   imageUrl: varchar().notNull(),
   description: text(),
-  categoryId: serial().references(() => categories.id),
+  categoryId: serial().references(() => categories.categoryId),
   isHot: boolean().default(false),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),

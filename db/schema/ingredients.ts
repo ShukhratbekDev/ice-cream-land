@@ -2,7 +2,7 @@ import { createInsertSchema } from 'drizzle-zod';
 import { pgTable, serial, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const ingredients = pgTable('ingredients', {
-  id: serial().primaryKey(),
+  ingredientId: serial().primaryKey(),
   name: varchar().unique().notNull(),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),

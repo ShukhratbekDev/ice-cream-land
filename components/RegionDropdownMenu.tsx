@@ -39,10 +39,10 @@ const RegionDropdownMenu = () => {
           <NavigationMenuContent>
             <ul className="grid grid-flow-row auto-rows-max gap-2 p-4">
               {data?.map((region) => (
-                <li key={region.id} className="flex">
+                <li key={region.regionId} className="flex">
                   <NavigationMenuLink
                     asChild
-                    active={region.id === selectedRegion?.id}
+                    active={region.regionId === selectedRegion?.regionId}
                     onClick={() => setSelectedRegion(region)}
                     className={navigationVerticalMenuTriggerStyle()}
                   >

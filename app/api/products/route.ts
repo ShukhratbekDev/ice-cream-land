@@ -11,7 +11,7 @@ export async function GET() {
       categoryId: false,
     },
     with: {
-      category: { columns: { id: true, name: true } },
+      category: { columns: { categoryId: true, name: true } },
       ...(userId ? { likes: { where: (likes, { eq }) => eq(likes.userId, userId) } } : {}),
       ingredients: {
         columns: {
@@ -21,7 +21,7 @@ export async function GET() {
         with: {
           ingredient: {
             columns: {
-              id: true,
+              ingredientId: true,
               name: true,
             },
           },
@@ -41,7 +41,7 @@ export async function GET() {
         regionalPrices: regionsData.map((region) => {
           const regionalPrice = convertPrice(basePrice, region.currency);
           return {
-            regionId: region.id,
+            regionId: region.regionId,
             price: regionalPrice,
             currency: region.currency,
           };

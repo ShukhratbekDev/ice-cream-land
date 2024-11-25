@@ -1,5 +1,5 @@
 export * from './categories';
-export * from './discountsVat';
+export * from './discountVats';
 export * from './ingredients';
 export * from './productIngredients';
 export * from './productLocalizations';
@@ -8,3 +8,5 @@ export * from './regions';
 export * from './likes';
 export * from './users';
 export * from './relations';
+export * from './carts';
+export * from './cartItems';

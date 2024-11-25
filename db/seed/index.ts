@@ -4,14 +4,14 @@ import {
   categories,
   ingredients,
   productIngredients,
-  discountsVat,
+  discountVats,
   regions,
   insertCategoriesSchema,
   insertIngredientsSchema,
   insertProductsSchema,
   insertProductIngredientsSchema,
   insertRegionsSchema,
-  insertDiscountsVatSchema,
+  insertDiscountVatsSchema,
 } from '../schema';
 
 import { products as productsData } from './products';
@@ -29,20 +29,20 @@ async function seedData() {
   const insertedCategories = await db
     .insert(categories)
     .values(uniqueCategories.map((name) => insertCategoriesSchema.parse({ name })))
-    .returning({ id: categories.id, name: categories.name })
+    .returning({ categoryId: categories.categoryId, name: categories.name })
     .onConflictDoNothing();
 
   // Mapping from category names to IDs
-  const categoryMap = new Map(insertedCategories.map((c) => [c.name, c.id]));
+  const categoryMap = new Map(insertedCategories.map((c) => [c.name, c.categoryId]));
 
   // Seed ingredients
   const insertedIngredients = await db
     .insert(ingredients)
     .values(uniqueIngredients.map((name) => insertIngredientsSchema.parse({ name })))
-    .returning({ id: ingredients.id, name: ingredients.name });
+    .returning({ ingredientId: ingredients.ingredientId, name: ingredients.name });
 
   // Create a map from ingredient names to IDs
-  const ingredientMap = new Map(insertedIngredients.map((i) => [i.name, i.id]));
+  const ingredientMap = new Map(insertedIngredients.map((i) => [i.name, i.ingredientId]));
 
   await Promise.all(
     productsData.map(async (product) => {
@@ -59,11 +59,11 @@ async function seedData() {
             rating: String(product.rating),
             imageUrl: product.image,
             description: product.description,
-            categoryId: categoryMap.get(product.category), // Assuming you've mapped categories
+            categoryId: categoryMap.get(product.category),
             isHot: product.isHot,
           })
         )
-        .returning({ id: products.id });
+        .returning({ id: products.productId });
 
       const productId = productIdResult[0].id;
 
@@ -87,8 +87,8 @@ async function seedData() {
 
   // Seed Discounts and VAT
   await db
-    .insert(discountsVat)
-    .values(discountsVatData.map((item) => insertDiscountsVatSchema.parse(item)))
+    .insert(discountVats)
+    .values(discountsVatData.map((item) => insertDiscountVatsSchema.parse(item)))
     .onConflictDoNothing();
 }
 

@@ -12,7 +12,7 @@ interface BasicStore {
   setSelectedRegion: (region: selectRegionsSchema | undefined) => void;
 }
 
-const useBasicStore = create<BasicStore>((set, get) => ({
+const useBasicStore = create<BasicStore>((set) => ({
   isCartModalOpen: false,
   setCartSidebarState: (state) => set({ isCartModalOpen: state }),
 

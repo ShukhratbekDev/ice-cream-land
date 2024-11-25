@@ -24,14 +24,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const { items, updateItemQuantity, addItem, removeItem } = useCart();
   const { selectedRegion } = useBasicStore();
   const regionalPrice = selectedRegion
-    ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
+    ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
     : undefined;
 
   const price = regionalPrice
     ? `${regionalPrice.price.toFixed(2)} ${regionalPrice.currency}`
     : `$ ${product.price.toFixed(2)}`;
 
-  const itemInCart = items.find((item) => item.id === String(product.id));
+  const itemInCart = items.find((item) => item.id === String(product.productId));
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -40,14 +40,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleAddToCart = () => {
     if (itemInCart) {
-      updateItemQuantity(String(product.id), quantity);
+      updateItemQuantity(String(product.productId), quantity);
     } else {
-      addItem({ ...product, id: String(product.id) }, quantity);
+      addItem({ ...product, id: String(product.productId) }, quantity);
     }
   };
 
   const handleRemoveItem = () => {
-    removeItem(String(product.id));
+    removeItem(String(product.productId));
     setQuantity(1);
   };
 
@@ -55,7 +55,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     if (itemInCart && itemInCart.quantity) {
       setQuantity(itemInCart.quantity);
     }
-  }, [itemInCart, product.id]);
+  }, [itemInCart, product.productId]);
 
   return (
     <Card className="max-w-sm overflow-hidden group">
@@ -71,7 +71,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <CardContent>
         <div className="mb-4">
           <CardTitle>
-            <Link href={`/products/${product.id}`} className="flex gap-2">
+            <Link href={`/products/${product.productId}`} className="flex gap-2">
               {product.name}
               {product.isHot && (
                 <Tooltip>

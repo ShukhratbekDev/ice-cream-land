@@ -20,11 +20,11 @@ export const useUnlikeProduct = (): UseMutationResult<
       const previousProducts = queryClient.getQueryData<Product[]>(['products']) || [];
 
       queryClient.setQueryData<Product[]>(['likedProducts'], (old = []) =>
-        old.filter((likedProduct) => likedProduct.id !== product.id)
+        old.filter((likedProduct) => likedProduct.productId !== product.productId)
       );
 
       queryClient.setQueryData<Product[]>(['products'], (products = []) =>
-        products.map((item) => ({ ...item, isLiked: item.id === product.id ? false : item.isLiked }))
+        products.map((item) => ({ ...item, isLiked: item.productId === product.productId ? false : item.isLiked }))
       );
 
       return { previousLikes, previousProducts };

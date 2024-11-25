@@ -3,12 +3,12 @@ import { products } from '@/db/schema/products';
 import { regions } from '@/db/schema/regions';
 
 export const productLocalizations = pgTable('product_localizations', {
-  id: serial().primaryKey(),
+  productLocalizationId: serial().primaryKey(),
   productId: integer()
-    .references(() => products.id)
+    .references(() => products.productId)
     .notNull(),
   regionId: char({ length: 3 })
-    .references(() => regions.id)
+    .references(() => regions.regionId)
     .notNull(), // Localization region identifier
   localizedName: varchar(),
   localizedDescription: text(),

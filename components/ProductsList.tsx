@@ -26,7 +26,7 @@ const ProductsList = () => {
             <TabsContent key={`tab-content-${category}`} value={category} className="space-y-4">
               <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
                 {(category === 'All' ? data : data?.filter((product) => product.category.name === category))?.map(
-                  (product) => <ProductCard product={product} key={category + product.id} />
+                  (product) => <ProductCard product={product} key={category + product.productId} />
                 )}
               </div>
             </TabsContent>

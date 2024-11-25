@@ -2,19 +2,18 @@ import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
 import { eq } from 'drizzle-orm';
 import { products } from '@/db/schema';
-import { regions } from '@/config/regions';
 import { convertPrice } from '@/lib/convertPrice';
 
 export async function GET(request: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const id = (await params).id;
-
+  const regionsData = await db.query.regions.findMany();
   const productData = await db.query.products.findFirst({
-    where: eq(products.id, Number(id)),
+    where: eq(products.productId, Number(id)),
     columns: {
       categoryId: false,
     },
     with: {
-      category: { columns: { id: true, name: true } },
+      category: { columns: { categoryId: true, name: true } },
       ingredients: {
         columns: {
           ingredientId: false,
@@ -23,7 +22,7 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
         with: {
           ingredient: {
             columns: {
-              id: true,
+              ingredientId: true,
               name: true,
             },
           },
@@ -37,10 +36,10 @@ export async function GET(request: NextRequest, { params }: { params: Promise<{ 
     ...productData,
     ingredients: productData?.ingredients.map((item) => item.ingredient),
     price: basePrice,
-    regionalPrices: regions.map((region) => {
+    regionalPrices: regionsData.map((region) => {
       const regionalPrice = convertPrice(basePrice, region.currency);
       return {
-        regionId: region.id,
+        regionId: region.regionId,
         price: regionalPrice,
         currency: region.currency,
       };

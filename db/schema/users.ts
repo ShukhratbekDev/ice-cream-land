@@ -2,7 +2,7 @@ import { createInsertSchema } from 'drizzle-zod';
 import { pgTable, timestamp, varchar } from 'drizzle-orm/pg-core';
 
 export const users = pgTable('users', {
-  id: varchar().primaryKey(),
+  userId: varchar().primaryKey(),
   username: varchar(),
   firstName: varchar(),
   lastName: varchar(),

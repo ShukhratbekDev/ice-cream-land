@@ -8,10 +8,10 @@ export const likes = pgTable(
   {
     userId: varchar()
       .notNull()
-      .references(() => users.id),
+      .references(() => users.userId),
     productId: integer()
       .notNull()
-      .references(() => products.id),
+      .references(() => products.productId),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.userId, t.productId] }),

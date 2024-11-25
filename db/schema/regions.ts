@@ -3,7 +3,7 @@ import { boolean, char, pgTable, timestamp, varchar } from 'drizzle-orm/pg-core'
 import z from 'zod';
 
 export const regions = pgTable('regions', {
-  id: char({ length: 3 }).primaryKey(),
+  regionId: char({ length: 3 }).primaryKey(),
   name: varchar().notNull(),
   isDefault: boolean().default(false),
   flagUrl: varchar().notNull(),
