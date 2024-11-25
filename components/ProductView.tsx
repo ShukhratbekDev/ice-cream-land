@@ -1,16 +1,12 @@
 'use client';
-import { useQuery } from '@tanstack/react-query';
-import { getProduct } from '@/utils/api-requests';
+
 import React from 'react';
 import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
+import { useProduct } from '@/hooks/useProduct';
 
 const ProductView = ({ id }: { id: number }) => {
-  const { data: product } = useQuery({
-    queryKey: ['hydrate-product', id],
-    queryFn: () => getProduct(id),
-    staleTime: 10 * 1000,
-  });
+  const { data: product } = useProduct(id);
 
   return (
     product && (

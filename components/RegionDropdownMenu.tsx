@@ -12,19 +12,13 @@ import {
   NavigationMenuViewport,
   navigationVerticalMenuTriggerStyle,
 } from '@/components/ui/navigation-menu';
-
-import { useQuery } from '@tanstack/react-query';
-import { getRegions } from '@/utils/api-requests';
 import useBasicStore from '@/hooks/useBasicStore';
 import { useEffect } from 'react';
 import FlagIcon from '@/components/FlagIcon';
+import { useRegions } from '@/hooks/useRegions';
 
 const RegionDropdownMenu = () => {
-  const { data } = useQuery({
-    queryKey: ['hydrate-regions'],
-    queryFn: () => getRegions(),
-    staleTime: 10 * 1000,
-  });
+  const { data } = useRegions();
   const { selectedRegion, setSelectedRegion } = useBasicStore();
 
   useEffect(() => {

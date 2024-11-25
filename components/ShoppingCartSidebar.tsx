@@ -8,17 +8,12 @@ import { Item, useCart } from 'react-use-cart';
 import useBasicStore from '@/hooks/useBasicStore';
 import { Trash2 } from 'lucide-react';
 import React from 'react';
-import { useQuery } from '@tanstack/react-query';
-import { getProducts } from '@/utils/api-requests';
+import { useProducts } from '@/hooks/useProducts';
 
 const ShoppingCartSidebar = () => {
   const { items, removeItem } = useCart();
   const { isCartModalOpen, setCartSidebarState, selectedRegion } = useBasicStore();
-  const { data } = useQuery({
-    queryKey: ['products'],
-    queryFn: () => getProducts(),
-    staleTime: 10 * 1000,
-  });
+  const { data } = useProducts();
 
   const getPrice = (itemInCart: Item) => {
     const product = data?.find((item) => itemInCart.id === String(item.id));
