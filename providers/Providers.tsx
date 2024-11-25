@@ -6,6 +6,7 @@ import { CartProvider } from 'react-use-cart';
 import { useState } from 'react';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { ThemeProvider } from 'next-themes';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 export default function Providers({
   children,
@@ -17,12 +18,14 @@ export default function Providers({
 
   return (
     <ThemeProvider {...props}>
-      <CartProvider>
-        <QueryClientProvider client={queryClient}>
-          {children}
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </CartProvider>
+      <TooltipProvider>
+        <CartProvider>
+          <QueryClientProvider client={queryClient}>
+            {children}
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </CartProvider>
+      </TooltipProvider>
     </ThemeProvider>
   );
 }

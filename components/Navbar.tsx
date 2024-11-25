@@ -3,16 +3,21 @@
 import { HeartIcon, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import Logo from './Logo';
+import Logo from '@/components/Logo';
 import NavMenus from '@/components/NavMenus';
 import React from 'react';
 import CartButton from '@/components/CartButton';
 import ModeSwitcher from '@/components/ModeSwitcher';
 import { siteConfig } from '@/config/site';
-import LikesButton from '@/components/LikesButton';
+import LikesSidebarToggle from './LikesSidebarToggle';
 import RegionDropdownMenu from '@/components/RegionDropdownMenu';
 
+import { SignUpButton, UserButton, useUser } from '@clerk/nextjs';
+import { SignInButton } from '@clerk/clerk-react';
+
 const Navbar = () => {
+  const { isSignedIn } = useUser();
+
   return (
     <section className="justify-items-center py-3">
       <div className="container">
@@ -29,8 +34,19 @@ const Navbar = () => {
           <div className="flex gap-2">
             <RegionDropdownMenu />
             <ModeSwitcher />
-            <LikesButton />
-            <CartButton />
+            {isSignedIn && (
+              <>
+                <LikesSidebarToggle />
+                <CartButton />
+              </>
+            )}
+            <UserButton />
+            {!isSignedIn && (
+              <>
+                <SignInButton />
+                <SignUpButton />
+              </>
+            )}
           </div>
         </nav>
         <div className="block lg:hidden">

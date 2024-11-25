@@ -15,13 +15,13 @@ const ShoppingCartSidebar = () => {
   const { items, removeItem } = useCart();
   const { isCartModalOpen, setCartSidebarState, selectedRegion } = useBasicStore();
   const { data } = useQuery({
-    queryKey: ['hydrate-products'],
+    queryKey: ['products'],
     queryFn: () => getProducts(),
     staleTime: 10 * 1000,
   });
 
   const getPrice = (itemInCart: Item) => {
-    const product = data?.find((item) => itemInCart.id === item.id);
+    const product = data?.find((item) => itemInCart.id === String(item.id));
     const regionalPrice = selectedRegion
       ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
       : undefined;
@@ -33,7 +33,7 @@ const ShoppingCartSidebar = () => {
   const getCartTotal = () => {
     const total = items
       .reduce((acc, itemInCart) => {
-        const product = data?.find((item) => itemInCart.id === item.id);
+        const product = data?.find((item) => itemInCart.id === String(item.id));
         const regionalPrice = selectedRegion
           ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
           : undefined;
@@ -61,7 +61,7 @@ const ShoppingCartSidebar = () => {
                   <div key={product.id} className="flex items-center space-x-4 overflow-hidden">
                     <div className="flex-none w-[100px] group">
                       <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
-                        <Image src={product.image} alt={product.name} className="object-cover" fill sizes="100vw" />
+                        <Image src={product.imageUrl} alt={product.name} className="object-cover" fill sizes="100vw" />
                       </figure>
                     </div>
                     <div>

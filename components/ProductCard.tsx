@@ -1,23 +1,28 @@
 import Image from 'next/image';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import React, { useEffect, useState } from 'react';
-import { HeartIcon, ShoppingCart, Trash2 } from 'lucide-react';
-import { Product } from '@/utils/api-requests';
+import { Flame, ShoppingCart, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import RatingStars from '@/components/RatingStars';
 import { useCart } from 'react-use-cart';
 import useBasicStore from '@/hooks/useBasicStore';
+import Link from 'next/link';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
+import { useUser } from '@clerk/nextjs';
+import LikeButton from '@/components/LikeButton';
+import { Product } from '@/db/schema';
 
 type ProductCardProps = {
   product: Product;
 };
 
 const ProductCard = ({ product }: ProductCardProps) => {
+  const { isSignedIn } = useUser();
   const [quantity, setQuantity] = useState(1);
   const { items, updateItemQuantity, addItem, removeItem } = useCart();
-  const { getLike, addLike, removeLike, selectedRegion } = useBasicStore();
+  const { selectedRegion } = useBasicStore();
   const regionalPrice = selectedRegion
     ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.id)
     : undefined;
@@ -26,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? `${regionalPrice.price.toFixed(2)} ${regionalPrice.currency}`
     : `$ ${product.price.toFixed(2)}`;
 
-  const itemInCart = items.find((item) => item.id === product.id);
+  const itemInCart = items.find((item) => item.id === String(product.id));
 
   const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(e.target.value);
@@ -35,14 +40,14 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
   const handleAddToCart = () => {
     if (itemInCart) {
-      updateItemQuantity(product.id, quantity);
+      updateItemQuantity(String(product.id), quantity);
     } else {
-      addItem(product, quantity);
+      addItem({ ...product, id: String(product.id) }, quantity);
     }
   };
 
   const handleRemoveItem = () => {
-    removeItem(product.id);
+    removeItem(String(product.id));
     setQuantity(1);
   };
 
@@ -53,40 +58,41 @@ const ProductCard = ({ product }: ProductCardProps) => {
   }, [itemInCart, product.id]);
 
   return (
-    <Card className="max-w-sm overflow-hidden">
-      <CardHeader className="p-0 group">
+    <Card className="max-w-sm overflow-hidden group">
+      <CardHeader className="p-0">
         <figure className="group-hover:opacity-80 relative w-full aspect-[4/3] mb-4">
-          <Image src={product.image} alt={product.name} className="object-cover" fill sizes="100vw" />
+          <Image src={product.imageUrl!} alt={product.name} className="object-cover" fill sizes="100vw" />
           <Badge variant="secondary" className="absolute top-3 left-3 text-sm">
-            {product.category}
+            {product.category.name}
           </Badge>
-          <Button
-            variant="ghost"
-            size="icon"
-            className="bg-white/70 absolute top-3 end-3 rounded-full dark:text-black"
-            onClick={() => (getLike(product.id) ? removeLike(product.id) : addLike(product.id))}
-          >
-            <HeartIcon
-              className="size-4"
-              fill={getLike(product.id) ? 'red' : 'none'}
-              color={getLike(product.id) ? 'red' : 'currentColor'}
-            />
-          </Button>
+          {isSignedIn && <LikeButton product={product} />}
         </figure>
       </CardHeader>
       <CardContent>
         <div className="mb-4">
-          <CardTitle>{product.name}</CardTitle>
+          <CardTitle>
+            <Link href={`/products/${product.id}`} className="flex gap-2">
+              {product.name}
+              {product.isHot && (
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Flame className="size-4" fill="red" color="red" />
+                  </TooltipTrigger>
+                  <TooltipContent>Hot Sale</TooltipContent>
+                </Tooltip>
+              )}
+            </Link>
+          </CardTitle>
           <div className="flex items-center mt-2 gap-1">
             <RatingStars rating={product.rating} />
-            <span className="ml-2 text-sm text-gray-600">({product.rating})</span>
+            <Badge variant="secondary">{product.rating}</Badge>
           </div>
         </div>
         <CardDescription>{product.description}</CardDescription>
         <div className="flex flex-wrap gap-1 mt-4">
           {product.ingredients.map((ingredient) => (
-            <Badge key={ingredient} variant="secondary" className="text-[0.5rem]">
-              {ingredient}
+            <Badge key={ingredient.id} variant="outline">
+              {ingredient.name}
             </Badge>
           ))}
         </div>

@@ -29,7 +29,7 @@ const RegionDropdownMenu = () => {
 
   useEffect(() => {
     if (!selectedRegion) {
-      const defaultRegion = data?.find((region) => region?.default);
+      const defaultRegion = data?.find((region) => region?.isDefault);
       setSelectedRegion(defaultRegion);
     }
   }, [selectedRegion, data]);

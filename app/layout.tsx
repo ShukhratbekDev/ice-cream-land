@@ -1,17 +1,11 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ClerkProvider } from '@clerk/nextjs';
 
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
-import Providers from '@/utils/providers';
+import { ThemeProvider } from '@/components/ThemeProvider';
 
 import './globals.css';
-import ShoppingCartSidebar from '@/components/ShoppingCartSidebar';
-import { ThemeProvider } from '@/components/ThemeProvider';
 import { siteConfig } from '@/config/site';
-import { QueryClient } from '@tanstack/query-core';
-import { getRegions } from '@/utils/api-requests';
-import LikesSidebar from '@/components/LikesSidebar';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -26,27 +20,14 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const queryClient = new QueryClient();
-
-  await queryClient.prefetchQuery({
-    queryKey: ['hydrate-regions'],
-    queryFn: getRegions,
-  });
-
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <div className="relative flex min-h-screen flex-col bg-background">
-            <Providers>
-              <Navbar />
-              <ShoppingCartSidebar />
-              <LikesSidebar />
-              {children}
-              <Footer />
-            </Providers>
-          </div>
-        </ThemeProvider>
+        <ClerkProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+            {children}
+          </ThemeProvider>
+        </ClerkProvider>
       </body>
     </html>
   );

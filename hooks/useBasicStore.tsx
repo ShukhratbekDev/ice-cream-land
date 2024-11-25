@@ -1,19 +1,19 @@
 import { create } from 'zustand';
-import { Region } from '@/utils/api-requests';
+import { selectRegionsSchema } from '@/db/schema';
 
 interface BasicStore {
   isCartModalOpen: boolean;
   setCartSidebarState: (state: boolean) => void;
 
-  likes: Array<string>;
-  getLike: (id: string) => boolean;
-  addLike: (id: string) => void;
-  removeLike: (id: string) => void;
+  likes: Array<number>;
+  getLike: (id: number) => boolean;
+  addLike: (id: number) => void;
+  removeLike: (id: number) => void;
   isLikesSidebarOpen: boolean;
   setLikesSidebarState: (state: boolean) => void;
 
-  selectedRegion: Region | undefined;
-  setSelectedRegion: (region: Region | undefined) => void;
+  selectedRegion: selectRegionsSchema | undefined;
+  setSelectedRegion: (region: selectRegionsSchema | undefined) => void;
 }
 
 const useBasicStore = create<BasicStore>((set, get) => ({
