@@ -1,4 +1,4 @@
-import { db } from './.';
+import { db } from '../.';
 import {
   products,
   categories,
@@ -12,11 +12,11 @@ import {
   insertProductIngredientsSchema,
   insertRegionsSchema,
   insertDiscountsVatSchema,
-} from './schema';
+} from '../schema';
 
-import { products as productsData } from '../config/products';
-import { regions as regionsData } from '../config/regions';
-import { discountsVat as discountsVatData } from '../config/discountsVat';
+import { products as productsData } from './products';
+import { regions as regionsData } from './regions';
+import { discountsVat as discountsVatData } from './discountsVat';
 
 async function seedData() {
   // Extract unique categories
