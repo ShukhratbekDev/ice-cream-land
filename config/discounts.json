@@ -1,0 +1,8 @@
+[
+    { "region": "UZB", "percentage": 3 },
+    { "region": "KAZ", "percentage": 5 },
+    { "region": "GEO", "percentage": 7 },
+    { "region": "UKR", "percentage": 10 },
+    { "region": "CHN", "percentage": 15 }
+  ]
+  
