@@ -21,7 +21,7 @@ export const useLikeProduct = (): UseMutationResult<
 
       queryClient.setQueryData<Product[]>(['likedProducts'], (old = []) => [...old, product]);
       queryClient.setQueryData<Product[]>(['products'], (products = []) =>
-        products.map((item) => ({ ...item, isLiked: item.id === product.id ? true : item.isLiked }))
+        products.map((item) => ({ ...item, isLiked: item.productId === product.productId ? true : item.isLiked }))
       );
 
       return { previousLikes, previousProducts };

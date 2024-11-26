@@ -16,11 +16,11 @@ export async function getRegions() {
 }
 
 export async function likeProduct(product: Product) {
-  await fetch(`/api/products/${product.id}/like`, { method: 'POST' });
+  await fetch(`/api/products/${product.productId}/like`, { method: 'POST' });
 }
 
 export async function unlikeProduct(product: Product) {
-  await fetch(`/api/products/${product.id}/unlike`, { method: 'POST' });
+  await fetch(`/api/products/${product.productId}/unlike`, { method: 'POST' });
 }
 
 export async function getLikedProducts() {

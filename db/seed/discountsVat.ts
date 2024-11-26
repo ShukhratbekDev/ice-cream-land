@@ -1,6 +1,6 @@
-import { DiscountsVat } from '@/db/schema';
+import { DiscountVat } from '@/db/schema';
 
-export const discountsVat: DiscountsVat[] = [
+export const discountsVat: DiscountVat[] = [
   { regionId: 'UZB', orderCost: '100.0', discountPercentage: '3.0', vatPercentage: '15.0' },
   { regionId: 'KAZ', orderCost: '500.0', discountPercentage: '5.0', vatPercentage: '20.0' },
   { regionId: 'GEO', orderCost: '700.0', discountPercentage: '7.0', vatPercentage: '12.0 ' },

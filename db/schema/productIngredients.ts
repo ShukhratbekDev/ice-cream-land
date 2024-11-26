@@ -8,10 +8,10 @@ export const productIngredients = pgTable(
   {
     productId: integer()
       .notNull()
-      .references(() => products.id),
+      .references(() => products.productId),
     ingredientId: integer()
       .notNull()
-      .references(() => ingredients.id),
+      .references(() => ingredients.ingredientId),
   },
   (t) => ({
     pk: primaryKey({ columns: [t.productId, t.ingredientId] }),

@@ -1,9 +1,9 @@
 import ProductView from '@/components/ProductView';
 
-const ProductViewPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const id = Number((await params).id);
+const ProductViewPage = async ({ params }: { params: Promise<{ productId: string }> }) => {
+  const productId = Number((await params).productId);
 
-  return <ProductView id={id} />;
+  return <ProductView productId={productId} />;
 };
 
 export default ProductViewPage;

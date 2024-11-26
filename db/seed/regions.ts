@@ -2,7 +2,7 @@ export const regions = [
   {
     id: 'UZB',
     name: 'Uzbekistan',
-    isisDefault: true,
+    isDefault: true,
     flagUrl: '/flags/uz.svg',
     currency: 'UZS', // Uzbekistani Som
   },

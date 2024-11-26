@@ -3,10 +3,10 @@ import z from 'zod';
 import { char, numeric, pgTable, serial, timestamp } from 'drizzle-orm/pg-core';
 import { regions } from '@/db/schema/regions';
 
-export const discountsVat = pgTable('discounts_vat', {
-  id: serial().primaryKey(),
+export const discountVats = pgTable('discount_vats', {
+  discountVatId: serial().primaryKey(),
   regionId: char({ length: 3 })
-    .references(() => regions.id)
+    .references(() => regions.regionId)
     .notNull(),
   orderCost: numeric({ precision: 10, scale: 2 }),
   discountPercentage: numeric({ precision: 5, scale: 2 }),
@@ -15,6 +15,6 @@ export const discountsVat = pgTable('discounts_vat', {
   updatedAt: timestamp().notNull().defaultNow(),
 });
 
-export const insertDiscountsVatSchema = createInsertSchema(discountsVat);
+export const insertDiscountVatsSchema = createInsertSchema(discountVats);
 
-export type DiscountsVat = z.infer<typeof insertDiscountsVatSchema>;
+export type DiscountVat = z.infer<typeof insertDiscountVatsSchema>;
