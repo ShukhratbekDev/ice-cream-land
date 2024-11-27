@@ -8,10 +8,15 @@ import Link from 'next/link';
 import { useUser } from '@clerk/nextjs';
 import LikeButton from '@/components/LikeButton';
 import { Product } from '@/db/schema';
-import AddToCart from '@/components/AddToCart';
+import AddItemToCart from '@/components/AddItemToCart';
 import Ingredients from '@/components/Ingredients';
 import IsHotProduct from '@/components/IsHotProduct';
 import { setCurrency } from '@/lib/setCurrency';
+import UpdateItemInCart from '@/components/UpdateItemInCart';
+import RemoveItemFromCart from '@/components/RemoveItemFromCart';
+import { useCart } from '@/hooks/useCart';
+import { ShoppingCart } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 type ProductCardProps = {
   product: Product;
@@ -23,8 +28,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
   const regionalPrice = selectedRegion
     ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
     : undefined;
-
   const price = regionalPrice?.price ?? product.price;
+  const { data } = useCart(isSignedIn);
+  const itemInCart = data?.find((item) => item.productId === product.productId);
 
   return (
     <Card className="max-w-sm overflow-hidden group">
@@ -59,7 +65,24 @@ const ProductCard = ({ product }: ProductCardProps) => {
         </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-2">
-        <AddToCart product={product} />
+        {isSignedIn ? (
+          <>
+            {itemInCart ? (
+              <>
+                <UpdateItemInCart itemInCart={itemInCart} />
+                <RemoveItemFromCart productId={product.productId} />
+              </>
+            ) : (
+              <AddItemToCart product={product} />
+            )}
+          </>
+        ) : (
+          <Button variant="default" className="flex-grow" asChild>
+            <Link href="/sign-in">
+              <ShoppingCart className="h-4 w-4" /> Add to Cart
+            </Link>
+          </Button>
+        )}
       </CardFooter>
     </Card>
   );

@@ -1,6 +1,6 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
+import { ButtonWithLoading } from '@/components/ui/button-with-loading';
 
 import Image from 'next/image';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
@@ -59,7 +59,7 @@ const ShoppingCartSidebar = () => {
         </SheetHeader>
         <div className="h-full flex flex-col justify-between">
           <div className="mt-8 flex-1 overflow-y-auto">
-            <div className="grid grid-flow-row auto-rows-max gap-4">
+            <div className="grid grid-flow-row auto-rows-max gap-4 mb-4">
               {data?.length === 0 ? (
                 <h1 className="py-6">You do not have any items</h1>
               ) : (
@@ -80,7 +80,9 @@ const ShoppingCartSidebar = () => {
                       <p className="text-sm font-medium leading-none">{item?.product?.name}</p>
                       <p className="text-sm text-muted-foreground">{item?.product?.description}</p>
                       <div className="flex">
-                        <p className="text-gray-500">QTY: {item.quantity}</p>
+                        <p className="text-gray-500">
+                          <Badge variant="outline">Qty {item.quantity}</Badge>
+                        </p>
                         <p className="ml-4">
                           {setCurrency({
                             price: getPrice(item),
@@ -91,9 +93,13 @@ const ShoppingCartSidebar = () => {
                       </div>
                     </div>
                     <div>
-                      <Button onClick={() => item.productId && removeItem(item.productId)} variant="ghost" size="icon">
+                      <ButtonWithLoading
+                        onClick={() => item.productId && removeItem(item.productId)}
+                        variant="ghost"
+                        size="icon"
+                      >
                         <Trash2 />
-                      </Button>
+                      </ButtonWithLoading>
                     </div>
                   </div>
                 ))
@@ -103,7 +109,7 @@ const ShoppingCartSidebar = () => {
           <div className="border-t border-gray-200 py-6">
             <Collapsible>
               <CollapsibleTrigger className="w-full">
-                <div className="flex items-center justify-between space-x-4">
+                <div className="flex items-center justify-between space-x-4 mb-2">
                   <h4 className="text-sm font-semibold">Details</h4>
                   <ChevronsUpDown className="h-4 w-4" />
                 </div>
@@ -161,12 +167,12 @@ const ShoppingCartSidebar = () => {
               </div>
             </Collapsible>
             <div className="mt-6">
-              <Button className="w-full bg-black text-white">Order now</Button>
+              <ButtonWithLoading className="w-full bg-black text-white">Order now</ButtonWithLoading>
             </div>
             <div className="mt-6 flex justify-center text-center text-sm text-gray-500">
-              <Button className="w-full mt-4" onClick={() => setCartSidebarState(false)}>
+              <ButtonWithLoading className="w-full mt-4" onClick={() => setCartSidebarState(false)}>
                 Continue shopping
-              </Button>
+              </ButtonWithLoading>
             </div>
           </div>
         </div>

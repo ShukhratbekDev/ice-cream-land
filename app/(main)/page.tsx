@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Button } from '@/components/ui/button';
+import { ButtonWithLoading } from '@/components/ui/button-with-loading';
 import { ArrowRight } from 'lucide-react';
 import backgroundImage from '@/public/background_home.jpg';
 
@@ -32,7 +32,7 @@ const HomePage = () => {
 
             <p className="text-xl text-white/90 md:text-2xl">Where every scoop is a delight.</p>
 
-            <Button
+            <ButtonWithLoading
               variant="default"
               size="lg"
               className="bg-emerald-500 text-white hover:bg-emerald-600"
@@ -40,7 +40,7 @@ const HomePage = () => {
             >
               Start Order
               <ArrowRight className="ml-2" />
-            </Button>
+            </ButtonWithLoading>
           </div>
         </div>
       </div>
