@@ -57,6 +57,13 @@
       "when": 1732556678361,
       "tag": "0007_keen_bastion",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1732681878460,
+      "tag": "0008_silly_ghost_rider",
+      "breakpoints": true
     }
   ]
 }

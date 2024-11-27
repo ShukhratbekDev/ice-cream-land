@@ -64,6 +64,17 @@ export const likesRelations = relations(likes, ({ one }) => ({
   }),
 }));
 
-export const cartRelations = relations(carts, ({ many }) => ({
+export const cartsRelations = relations(carts, ({ many }) => ({
   items: many(cartItems),
+}));
+
+export const cartItemsRelations = relations(cartItems, ({ one }) => ({
+  cart: one(carts, {
+    fields: [cartItems.cartId],
+    references: [carts.cartId],
+  }),
+  product: one(products, {
+    fields: [cartItems.productId],
+    references: [products.productId],
+  }),
 }));

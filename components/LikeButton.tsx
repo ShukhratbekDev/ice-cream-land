@@ -1,8 +1,8 @@
 'use client';
 
+import React from 'react';
 import { HeartIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import React from 'react';
 import { Product } from '@/db/schema';
 import { useLikeProduct } from '@/hooks/useLikeProduct';
 import { useUnlikeProduct } from '@/hooks/useUnlikeProduct';
@@ -15,9 +15,9 @@ const LikeButton = ({ product }: LikeButtonProps) => {
   const { mutate: likeProduct, isPending: isPendingLike } = useLikeProduct();
   const { mutate: unlikeProduct, isPending: isPendingUnlike } = useUnlikeProduct();
 
-  const handleLike = async () => {
+  const handleLike = () => {
     if (product.isLiked) {
-      await unlikeProduct(product);
+      unlikeProduct(product);
     } else {
       likeProduct(product);
     }
