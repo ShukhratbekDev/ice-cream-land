@@ -52,3 +52,21 @@ export async function removeItemFromCart(id: number) {
   const res = await fetch(`/api/cart/items/${id}`, { method: 'DELETE' });
   return await res.json();
 }
+
+type CalculatePricePayload = {
+  regionId: string;
+  price: number;
+};
+
+type CalculationResult = {
+  originalPrice: number;
+  discountAmount: number;
+  taxAmount: number;
+  finalAmount: number;
+  discountPercentage: number;
+  taxPercentage: number;
+};
+export async function fetchFinalPrice(body: CalculatePricePayload) {
+  const res = await fetch('/api/calculate-final-price', { method: 'POST', body: JSON.stringify(body) });
+  return (await res.json()) as CalculationResult;
+}

@@ -1,7 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import Providers from '@/providers/Providers';
-import ShoppingCartSidebar from '@/components/ShoppingCartSidebar';
 import Hydration from '@/providers/Hydration';
 
 export default async function MainLayout({
@@ -14,7 +13,6 @@ export default async function MainLayout({
       <Providers>
         <Hydration>
           <Navbar />
-          <ShoppingCartSidebar />
           {children}
           <Footer />
         </Hydration>

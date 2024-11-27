@@ -2,7 +2,7 @@ import { create } from 'zustand';
 import { selectRegionsSchema } from '@/db/schema';
 
 interface BasicStore {
-  isCartModalOpen: boolean;
+  isCartSidebarOpen: boolean;
   setCartSidebarState: (state: boolean) => void;
 
   isLikesSidebarOpen: boolean;
@@ -13,8 +13,8 @@ interface BasicStore {
 }
 
 const useBasicStore = create<BasicStore>((set) => ({
-  isCartModalOpen: false,
-  setCartSidebarState: (state) => set({ isCartModalOpen: state }),
+  isCartSidebarOpen: false,
+  setCartSidebarState: (state) => set({ isCartSidebarOpen: state }),
 
   isLikesSidebarOpen: false,
   setLikesSidebarState: (state) => set({ isLikesSidebarOpen: state }),
