@@ -1,4 +1,4 @@
-import { Product, selectRegionsSchema } from '@/db/schema';
+import { InsertCartItemsSchema, Product, SelectCartSchema, selectRegionsSchema } from '@/db/schema';
 
 export async function getProducts() {
   const res = await fetch('/api/products');
@@ -26,4 +26,29 @@ export async function unlikeProduct(product: Product) {
 export async function getLikedProducts() {
   const res = await fetch('/api/me/liked-products');
   return (await res.json()) as Product[];
+}
+
+export async function getCart() {
+  const res = await fetch('/api/cart');
+  return (await res.json()) as SelectCartSchema;
+}
+
+export async function clearCart() {
+  const res = await fetch('/api/cart/clear', { method: 'POST' });
+  return await res.json();
+}
+
+export async function addItemToCart(item: InsertCartItemsSchema) {
+  const res = await fetch(`/api/cart/items`, { method: 'POST', body: JSON.stringify(item) });
+  return await res.json();
+}
+
+export async function updateItemInCart(item: InsertCartItemsSchema) {
+  const res = await fetch(`/api/cart/items/${item.productId}`, { method: 'PUT', body: JSON.stringify(item) });
+  return await res.json();
+}
+
+export async function removeItemFromCart(id: number) {
+  const res = await fetch(`/api/cart/items/${id}`, { method: 'DELETE' });
+  return await res.json();
 }
