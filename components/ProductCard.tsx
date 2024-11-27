@@ -11,6 +11,7 @@ import { Product } from '@/db/schema';
 import AddToCart from '@/components/AddToCart';
 import Ingredients from '@/components/Ingredients';
 import IsHotProduct from '@/components/IsHotProduct';
+import { setCurrency } from '@/lib/setCurrency';
 
 type ProductCardProps = {
   product: Product;
@@ -23,9 +24,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
     ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
     : undefined;
 
-  const price = regionalPrice
-    ? `${regionalPrice.price.toFixed(2)} ${regionalPrice.currency}`
-    : `$ ${product.price.toFixed(2)}`;
+  const price = regionalPrice?.price ?? product.price;
 
   return (
     <Card className="max-w-sm overflow-hidden group">
@@ -54,7 +53,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
         <CardDescription>{product.description}</CardDescription>
         <Ingredients product={product} />
         <div className="flex justify-between items-center mt-4">
-          <span className="text-3xl font-bold">{price}</span>
+          <span className="text-3xl font-bold">
+            {setCurrency({ price, locale: selectedRegion?.regionId, currency: selectedRegion?.currency })}
+          </span>
         </div>
       </CardContent>
       <CardFooter className="flex items-center space-x-2">
