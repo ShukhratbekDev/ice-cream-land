@@ -17,9 +17,9 @@ const CartButton = () => {
         <Button variant="ghost" size="icon" onClick={() => setCartSidebarState(true)}>
           <ShoppingCart className="size-4" />
         </Button>
-        {data?.items && data?.items?.length > 0 && (
+        {data && data?.length > 0 && (
           <div className="absolute -top-2 -right-2 bg-primary text-primary-foreground rounded-full px-2 py-1 text-[.5rem] font-medium flex items-center justify-center">
-            {data.items.length}
+            {data.length}
           </div>
         )}
       </div>

@@ -23,7 +23,7 @@ const ShoppingCartSidebar = () => {
   const { isCartSidebarOpen, setCartSidebarState, selectedRegion } = useBasicStore();
   const { data: products } = useProducts();
 
-  const getPrice = (itemInCart: CartItemWithProduct) => {
+  const getPrice = (itemInCart: Partial<CartItemWithProduct>) => {
     const product = products?.find((item) => itemInCart?.productId === item.productId);
     const regionalPrice = selectedRegion
       ? product?.regionalPrices?.find((item) => item.regionId === selectedRegion.regionId)
@@ -33,7 +33,7 @@ const ShoppingCartSidebar = () => {
   };
 
   const getCartTotal = () => {
-    return (data?.items ?? []).reduce((acc, itemInCart) => {
+    return (data ?? []).reduce((acc, itemInCart) => {
       const product = products?.find((item) => itemInCart.productId === item.productId);
 
       if (!product) {
@@ -60,16 +60,16 @@ const ShoppingCartSidebar = () => {
         <div className="h-full flex flex-col justify-between">
           <div className="mt-8 flex-1 overflow-y-auto">
             <div className="grid grid-flow-row auto-rows-max gap-4">
-              {data?.items?.length === 0 ? (
+              {data?.length === 0 ? (
                 <h1 className="py-6">You do not have any items</h1>
               ) : (
-                data?.items?.map((item) => (
+                data?.map((item) => (
                   <div key={item.productId} className="flex items-center space-x-4 overflow-hidden">
                     <div className="flex-none w-[100px] group">
                       <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
                         <Image
-                          src={item?.product?.imageUrl}
-                          alt={item?.product?.name}
+                          src={item?.product?.imageUrl ?? ''}
+                          alt={item?.product?.name ?? ''}
                           className="object-cover"
                           fill
                           sizes="100vw"
