@@ -9,6 +9,8 @@ import { likes } from '@/db/schema/likes';
 import { users } from '@/db/schema/users';
 import { carts } from '@/db/schema/carts';
 import { cartItems } from '@/db/schema/cartItems';
+import { orders } from '@/db/schema/orders';
+import { orderItems } from '@/db/schema/orderItems';
 
 export const discountsVatRelations = relations(discountVats, ({ one }) => ({
   region: one(regions, {
@@ -51,6 +53,7 @@ export const userRelations = relations(users, ({ one, many }) => ({
     fields: [users.userId],
     references: [carts.userId],
   }),
+  orders: many(orders),
 }));
 
 export const likesRelations = relations(likes, ({ one }) => ({
@@ -75,6 +78,25 @@ export const cartItemsRelations = relations(cartItems, ({ one }) => ({
   }),
   product: one(products, {
     fields: [cartItems.productId],
+    references: [products.productId],
+  }),
+}));
+
+export const ordersRelations = relations(orders, ({ one, many }) => ({
+  user: one(users, {
+    fields: [orders.userId],
+    references: [users.userId],
+  }),
+  orderItems: many(orderItems),
+}));
+
+export const orderItemsRelations = relations(orderItems, ({ one }) => ({
+  order: one(orders, {
+    fields: [orderItems.orderId],
+    references: [orders.orderId],
+  }),
+  product: one(products, {
+    fields: [orderItems.productId],
     references: [products.productId],
   }),
 }));
