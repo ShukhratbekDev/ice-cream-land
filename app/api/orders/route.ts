@@ -5,7 +5,7 @@ import { auth } from '@clerk/nextjs/server';
 import { eq } from 'drizzle-orm';
 import { Order, orders } from '@/db/schema/orders';
 import { convertPrice } from '@/lib/convertPrice';
-import { calculatePricing } from '@/app/api/calculate-final-price/route';
+import { calculatePricing } from '@/lib/calculatePricing';
 import { InsertOrderItemSchema, orderItems } from '@/db/schema/orderItems';
 
 export async function POST(request: NextRequest) {
