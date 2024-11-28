@@ -12,7 +12,7 @@ type CalculationResult = {
   taxPercentage: number;
 };
 
-function calculatePricing(orderAmount: number, discountVat: DiscountVat): CalculationResult {
+export function calculatePricing(orderAmount: number, discountVat: DiscountVat): CalculationResult {
   if (orderAmount <= 0) {
     throw new Error('Order amount must be greater than zero.');
   }

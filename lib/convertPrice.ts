@@ -6,7 +6,11 @@ const conversionRates: Record<string, number> = {
   CNY: 7, // 1 USD to CNY conversion rate
 };
 
-export function convertPrice(price: number, currency: string) {
+export function convertPrice(price?: number, currency?: string) {
+  if (!price || !currency) {
+    return;
+  }
+
   const rate = conversionRates[currency];
   return Number((price * rate).toFixed(2));
 }

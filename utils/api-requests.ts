@@ -71,3 +71,13 @@ export async function fetchFinalPrice(body: CalculatePricePayload) {
   const res = await fetch('/api/calculate-final-price', { method: 'POST', body: JSON.stringify(body) });
   return (await res.json()) as CalculationResult;
 }
+
+export type OrderPayload = {
+  createdAt: string | Date;
+  regionId: string;
+};
+
+export async function createOrder(body: OrderPayload) {
+  const res = await fetch('/api/orders', { method: 'POST', body: JSON.stringify(body) });
+  return await res.json();
+}

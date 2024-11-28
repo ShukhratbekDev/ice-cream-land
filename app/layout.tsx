@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import { ClerkProvider } from '@clerk/nextjs';
 
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { Toaster } from '@/components/ui/toaster';
 
 import './globals.css';
 import { siteConfig } from '@/config/site';
@@ -28,6 +29,7 @@ export default async function RootLayout({
             {children}
           </ThemeProvider>
         </ClerkProvider>
+        <Toaster />
       </body>
     </html>
   );
