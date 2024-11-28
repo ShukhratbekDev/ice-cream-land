@@ -5,78 +5,15 @@
     {
       "idx": 0,
       "version": "7",
-      "when": 1732381249753,
-      "tag": "0000_early_zaran",
+      "when": 1732778807997,
+      "tag": "0000_shallow_power_man",
       "breakpoints": true
     },
     {
       "idx": 1,
       "version": "7",
-      "when": 1732385617922,
-      "tag": "0001_classy_mephisto",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "7",
-      "when": 1732391728516,
-      "tag": "0002_hesitant_leader",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "7",
-      "when": 1732392155815,
-      "tag": "0003_tricky_ender_wiggin",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "7",
-      "when": 1732467766146,
-      "tag": "0004_silly_saracen",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "7",
-      "when": 1732472565513,
-      "tag": "0005_cool_piledriver",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "7",
-      "when": 1732556568790,
-      "tag": "0006_salty_newton_destine",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "7",
-      "when": 1732556678361,
-      "tag": "0007_keen_bastion",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "7",
-      "when": 1732681878460,
-      "tag": "0008_silly_ghost_rider",
-      "breakpoints": true
-    },
-    {
-      "idx": 9,
-      "version": "7",
-      "when": 1732707025083,
-      "tag": "0009_chunky_wolf_cub",
-      "breakpoints": true
-    },
-    {
-      "idx": 10,
-      "version": "7",
-      "when": 1732716025923,
-      "tag": "0010_nebulous_reptil",
+      "when": 1732780070389,
+      "tag": "0001_rich_sentinel",
       "breakpoints": true
     }
   ]

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
-import { discountVats, regions, users } from '@/db/schema';
+import { cartItems, discountVats, regions, users } from '@/db/schema';
 import { auth } from '@clerk/nextjs/server';
 import { eq } from 'drizzle-orm';
 import { Order, orders } from '@/db/schema/orders';
@@ -29,6 +29,11 @@ export async function POST(request: NextRequest) {
     where: eq(users.userId, userId),
     with: { cart: { with: { items: { with: { product: true } } } } },
   });
+
+  if (!userData?.cart?.cartId) {
+    return NextResponse.json({ error: 'Not allowed' }, { status: 403 });
+  }
+
   const regionsData = await db.query.regions.findFirst({ where: eq(regions.regionId, regionId) });
 
   const getTotal = (userData?.cart?.items ?? []).reduce((acc, itemInCart) => {
@@ -47,7 +52,13 @@ export async function POST(request: NextRequest) {
       userId,
       regionId,
       createdAt: createdAt ? new Date(createdAt) : undefined,
+      currency: regionsData?.currency,
       totalAmount: String(finalPrice.finalAmount),
+      discountAmount: String(finalPrice.discountAmount),
+      discountedAmount: String(finalPrice.discountedAmount),
+      discountPercentage: String(finalPrice.discountPercentage),
+      taxAmount: String(finalPrice.taxAmount),
+      taxPercentage: String(finalPrice.taxPercentage),
     } as Order)
     .returning();
 
@@ -60,6 +71,8 @@ export async function POST(request: NextRequest) {
       currency: regionsData?.currency,
     })) as InsertOrderItemSchema[]
   );
+
+  await db.delete(cartItems).where(eq(cartItems.cartId, userData.cart.cartId));
 
   return new NextResponse('Created', { status: 201 });
 }

@@ -14,6 +14,7 @@ import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, For
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { useCreateOrder } from '@/hooks/useCreateOrder';
 import useBasicStore from '@/hooks/useBasicStore';
+import { useCart } from '@/hooks/useCart';
 
 const FormSchema = z.object({
   createdAt: z.date({
@@ -22,6 +23,7 @@ const FormSchema = z.object({
 });
 
 const OrderForm = () => {
+  const { data } = useCart();
   const { mutate: createOrder } = useCreateOrder();
   const { selectedRegion } = useBasicStore();
   const form = useForm<z.infer<typeof FormSchema>>({
@@ -81,6 +83,7 @@ const OrderForm = () => {
         />
         <Button
           type="submit"
+          disabled={data && data?.length <= 0}
           className="w-full mt-6 bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
         >
           Checkout
