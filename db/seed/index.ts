@@ -6,17 +6,26 @@ import {
   productIngredients,
   discountVats,
   regions,
+  orders,
+  orderItems,
+  users,
   insertCategoriesSchema,
   insertIngredientsSchema,
   insertProductsSchema,
   insertProductIngredientsSchema,
   insertRegionsSchema,
   insertDiscountVatsSchema,
+  insertUsersSchema,
+  insertOrderSchema,
+  insertOrderItemSchema,
 } from '../schema';
 
 import { products as productsData } from './products';
 import { regions as regionsData } from './regions';
 import { discountsVat as discountsVatData } from './discountsVat';
+import { sampleUsers as usersData } from './users';
+import { sampleOrders as ordersData } from './orders';
+import { sampleOrderItems as orderItemsData } from './orderItems';
 
 async function seedData() {
   // Extract unique categories
@@ -89,6 +98,24 @@ async function seedData() {
   await db
     .insert(discountVats)
     .values(discountsVatData.map((item) => insertDiscountVatsSchema.parse(item)))
+    .onConflictDoNothing();
+
+  // Seed Users
+  await db
+    .insert(users)
+    .values(usersData.map((user) => insertUsersSchema.parse(user)))
+    .onConflictDoNothing();
+
+  // Seed Orders
+  await db
+    .insert(orders)
+    .values(ordersData.map((order) => insertOrderSchema.parse(order)))
+    .onConflictDoNothing();
+
+  // Seed OrderItems
+  await db
+    .insert(orderItems)
+    .values(orderItemsData.map((orderItem) => insertOrderItemSchema.parse(orderItem)))
     .onConflictDoNothing();
 }
 
