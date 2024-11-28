@@ -10,7 +10,7 @@ const Ingredients = ({ product }: IngredientsProps) => {
   return (
     <div className="flex flex-wrap gap-1 mt-4">
       {(product?.ingredients ?? []).map((ingredient) => (
-        <Badge key={ingredient.id} variant="outline">
+        <Badge key={ingredient?.ingredientId} variant="outline">
           {ingredient.name}
         </Badge>
       ))}

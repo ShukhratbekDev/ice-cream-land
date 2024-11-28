@@ -3,7 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { Button } from '@/components/ui/button';
+import { ButtonWithLoading } from '@/components/ui/button-with-loading';
 import useBasicStore from '@/hooks/useBasicStore';
 import { HeartIcon, Trash2 } from 'lucide-react';
 import { useUnlikeProduct } from '@/hooks/useUnlikeProduct';
@@ -47,14 +47,14 @@ const LikesSidebar = () => {
                       <p className="text-sm text-muted-foreground">{product.description}</p>
                     </div>
                     <div>
-                      <Button
+                      <ButtonWithLoading
                         onClick={() => handleUnlike(product)}
                         variant="ghost"
                         size="icon"
                         disabled={isPendingUnlike}
                       >
                         <Trash2 />
-                      </Button>
+                      </ButtonWithLoading>
                     </div>
                   </div>
                 ))

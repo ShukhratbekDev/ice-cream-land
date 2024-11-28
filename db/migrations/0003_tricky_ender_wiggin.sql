@@ -1,1 +1,0 @@
-ALTER TABLE "regions" ALTER COLUMN "flag_url" SET NOT NULL;

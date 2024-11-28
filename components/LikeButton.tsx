@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { HeartIcon } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { ButtonWithLoading } from '@/components/ui/button-with-loading';
 import { Product } from '@/db/schema';
 import { useLikeProduct } from '@/hooks/useLikeProduct';
 import { useUnlikeProduct } from '@/hooks/useUnlikeProduct';
@@ -24,7 +24,7 @@ const LikeButton = ({ product }: LikeButtonProps) => {
   };
 
   return (
-    <Button
+    <ButtonWithLoading
       variant="outline"
       size="icon"
       className="absolute top-3 end-3 rounded-full"
@@ -36,7 +36,7 @@ const LikeButton = ({ product }: LikeButtonProps) => {
         fill={product.isLiked ? 'red' : 'none'}
         color={product.isLiked ? 'red' : 'currentColor'}
       />
-    </Button>
+    </ButtonWithLoading>
   );
 };
 

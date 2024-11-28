@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import { db } from '@/db/index';
+import { db } from '@/db';
 import { orders } from '@/db/schema/orders';
 import { orderItems } from '@/db/schema/orderItems';
 import { sql } from 'drizzle-orm';
 
-export async function GET(req: Request) {
+export async function GET() {
   try {
     // Query to get sales data by region
     const salesByRegion = await db

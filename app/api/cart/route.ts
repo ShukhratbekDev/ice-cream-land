@@ -23,8 +23,8 @@ export async function GET() {
       with: { cart: { columns: {}, with: { items: { with: { product: true } } } } },
     });
 
-    return NextResponse.json(userData?.cart);
+    return NextResponse.json(userData?.cart?.items);
   }
 
-  return NextResponse.json(userData?.cart);
+  return NextResponse.json(userData?.cart?.items);
 }

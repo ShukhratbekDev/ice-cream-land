@@ -30,9 +30,14 @@ type Option = {
   id: number;
   name: string;
 };
+
+type Ingredient = {
+  ingredientId: number;
+  name: string;
+};
 export type Product = Omit<z.infer<typeof selectProductsSchema>, 'price' | 'rating'> & {
   isLiked: boolean;
-  ingredients: Option[];
+  ingredients: Ingredient[];
   regionalPrices: RegionalPrice[];
   price: number;
   rating: number;

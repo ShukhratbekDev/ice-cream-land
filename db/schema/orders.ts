@@ -13,6 +13,12 @@ export const orders = pgTable('orders', {
     .references(() => regions.regionId)
     .notNull(),
   totalAmount: numeric({ precision: 10, scale: 2 }).notNull(),
+  currency: char({ length: 3 }).notNull(),
+  discountPercentage: numeric({ precision: 5, scale: 2 }).notNull(),
+  taxPercentage: numeric({ precision: 5, scale: 2 }).notNull(),
+  discountAmount: numeric({ precision: 10, scale: 2 }).notNull(),
+  discountedAmount: numeric({ precision: 10, scale: 2 }).notNull(),
+  taxAmount: numeric({ precision: 10, scale: 2 }).notNull(),
   createdAt: timestamp().notNull().defaultNow(),
   updatedAt: timestamp().notNull().defaultNow(),
   status: char({ length: 20 }).default('pending'),

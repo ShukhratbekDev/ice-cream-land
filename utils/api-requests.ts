@@ -1,4 +1,4 @@
-import { InsertCartItemsSchema, Product, SelectCartSchema, selectRegionsSchema } from '@/db/schema';
+import { CartItemWithProduct, Product, selectRegionsSchema } from '@/db/schema';
 
 export async function getProducts() {
   const res = await fetch('/api/products');
@@ -30,7 +30,7 @@ export async function getLikedProducts() {
 
 export async function getCart() {
   const res = await fetch('/api/cart');
-  return (await res.json()) as SelectCartSchema;
+  return (await res.json()) as Partial<CartItemWithProduct>[];
 }
 
 export async function clearCart() {
@@ -38,12 +38,12 @@ export async function clearCart() {
   return await res.json();
 }
 
-export async function addItemToCart(item: InsertCartItemsSchema) {
+export async function addItemToCart(item: Partial<CartItemWithProduct>) {
   const res = await fetch(`/api/cart/items`, { method: 'POST', body: JSON.stringify(item) });
   return await res.json();
 }
 
-export async function updateItemInCart(item: InsertCartItemsSchema) {
+export async function updateItemInCart(item: Partial<CartItemWithProduct>) {
   const res = await fetch(`/api/cart/items/${item.productId}`, { method: 'PUT', body: JSON.stringify(item) });
   return await res.json();
 }
@@ -66,7 +66,18 @@ type CalculationResult = {
   discountPercentage: number;
   taxPercentage: number;
 };
+
 export async function fetchFinalPrice(body: CalculatePricePayload) {
   const res = await fetch('/api/calculate-final-price', { method: 'POST', body: JSON.stringify(body) });
   return (await res.json()) as CalculationResult;
+}
+
+export type OrderPayload = {
+  createdAt: string | Date;
+  regionId: string;
+};
+
+export async function createOrder(body: OrderPayload) {
+  const res = await fetch('/api/orders', { method: 'POST', body: JSON.stringify(body) });
+  return await res.json();
 }

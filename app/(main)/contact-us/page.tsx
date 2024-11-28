@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import { ButtonWithLoading } from '@/components/ui/button-with-loading';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
@@ -54,7 +54,7 @@ export default function ContactUs() {
               <Label htmlFor="message">Message</Label>
               <Textarea placeholder="Type your message here." id="message" />
             </div>
-            <Button className="w-full">Send Message</Button>
+            <ButtonWithLoading className="w-full">Send Message</ButtonWithLoading>
           </div>
         </div>
       </div>

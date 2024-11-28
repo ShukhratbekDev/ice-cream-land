@@ -45,9 +45,10 @@ async function seedData() {
   const categoryMap = new Map(insertedCategories.map((c) => [c.name, c.categoryId]));
 
   // Seed ingredients
+
   const insertedIngredients = await db
     .insert(ingredients)
-    .values(uniqueIngredients.map((name) => insertIngredientsSchema.parse({ name })))
+    .values([...new Set(uniqueIngredients)].map((name) => insertIngredientsSchema.parse({ name })))
     .returning({ ingredientId: ingredients.ingredientId, name: ingredients.name });
 
   // Create a map from ingredient names to IDs

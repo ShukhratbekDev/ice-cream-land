@@ -1,34 +1,34 @@
 export const regions = [
   {
-    id: 'UZB',
+    regionId: 'UZB',
     name: 'Uzbekistan',
     isDefault: true,
     flagUrl: '/flags/uz.svg',
     currency: 'UZS', // Uzbekistani Som
   },
   {
-    id: 'KAZ',
+    regionId: 'KAZ',
     name: 'Kazakhstan',
     isDefault: false,
     flagUrl: '/flags/kz.svg',
     currency: 'KZT', // Kazakhstani Tenge
   },
   {
-    id: 'GEO',
+    regionId: 'GEO',
     name: 'Georgia',
     isDefault: false,
     flagUrl: '/flags/ge.svg',
     currency: 'GEL', // Georgian Lari
   },
   {
-    id: 'UKR',
+    regionId: 'UKR',
     name: 'Ukraine',
     isDefault: false,
     flagUrl: '/flags/ua.svg',
     currency: 'UAH', // Ukrainian Hryvnia
   },
   {
-    id: 'CHN',
+    regionId: 'CHN',
     name: 'China',
     isDefault: false,
     flagUrl: '/flags/cn.svg',

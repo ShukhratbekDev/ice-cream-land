@@ -35,7 +35,10 @@ export async function PUT(request: NextRequest, { params }: { params: Promise<{ 
     return new NextResponse('Not Found', { status: 404 });
   }
 
-  await db.update(cartItems).set({ productId, quantity }).where(eq(cartItems.cartId, userData.cart.cartId));
+  await db
+    .update(cartItems)
+    .set({ quantity })
+    .where(and(eq(cartItems.cartId, userData.cart.cartId), eq(cartItems.productId, productId)));
 
   return new NextResponse('OK', { status: 200 });
 }

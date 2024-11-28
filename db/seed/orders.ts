@@ -1,12 +1,9 @@
-import { orders } from '@/db/schema/orders';
-import { regions } from '@/db/schema/regions';
-import { discountVats } from '@/db/schema/discountVats';
-
 export const sampleOrders = [
   {
     userId: 'user1',
     regionId: 'UZB',
     status: 'completed',
+    totalAmount: 2300,
   },
   {
     userId: 'user2',
