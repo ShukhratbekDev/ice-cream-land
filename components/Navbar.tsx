@@ -23,9 +23,11 @@ const Navbar = () => {
       <div className="container">
         <nav className="hidden justify-between items-center lg:flex">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Logo />
-              <span className="font-bold">{siteConfig.name}</span>
+            <div className="flex gap-2">
+              <span className="size-4">
+                <Logo />
+              </span>
+              <span className="font-bold flex-grow text-nowrap">{siteConfig.name}</span>
             </div>
             <div className="flex items-center">
               <NavMenus />
