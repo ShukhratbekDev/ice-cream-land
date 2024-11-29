@@ -1,50 +1,54 @@
 'use client';
 
 import React from 'react';
+import { Button } from '@/components/ui/button';
 import Image from 'next/image';
-import { ButtonWithLoading } from '@/components/ui/button-with-loading';
-import { ArrowRight } from 'lucide-react';
-import backgroundImage from '@/public/background_home.jpg';
+import Link from 'next/link';
+import { useProducts } from '@/hooks/useProducts';
+import ProductCard from '@/components/ProductCard';
+import { Flame } from 'lucide-react';
 
 const HomePage = () => {
+  const { data } = useProducts();
+  const hotProducts = data?.filter((product) => product.isHot === true);
   return (
-    <main className="relative min-h-screen">
-      <div className="relative h-screen w-full overflow-hidden bg-neutral-100">
-        <div className="absolute inset-0">
-          <Image
-            src={backgroundImage}
-            alt="Ice cream scoops stacked"
-            fill
-            priority
-            quality={100}
-            style={{ objectFit: 'cover' }}
-          />
-        </div>
-
-        <div className="absolute inset-0 bg-black/20" />
-
-        <div className="relative z-10 flex h-full flex-col justify-center px-6 sm:px-12 lg:px-24">
-          <div className="max-w-2xl space-y-6">
-            <h1 className="mb-4 text-5xl font-bold text-white md:text-6xl lg:text-7xl">
-              Welcome to <br />
-              Ice Cream Land!
-            </h1>
-
-            <p className="text-xl text-white/90 md:text-2xl">Where every scoop is a delight.</p>
-
-            <ButtonWithLoading
-              variant="default"
-              size="lg"
-              className="bg-emerald-500 text-white hover:bg-emerald-600"
-              onClick={() => console.log('Start Order clicked')}
-            >
-              Start Order
-              <ArrowRight className="ml-2" />
-            </ButtonWithLoading>
+    <div>
+      <section className="relative overflow-hidden w-full">
+        <div className="relative">
+          <div className="absolute left-0 z-10 hidden h-full w-1/2 bg-[linear-gradient(to_right,hsl(var(--background))_85%,transparent_100%)] md:block"></div>
+          <div className="md:-space-x-26 relative flex flex-col items-start md:flex-row md:items-center">
+            <div className="z-20 -mx-[calc(theme(container.padding))] w-[calc(100%+2*theme(container.padding))] shrink-0 bg-background px-[calc(theme(container.padding))] pt-32 pl-32 md:w-1/2 md:bg-transparent md:pb-32">
+              <div className="flex flex-col items-start text-left">
+                <div className="max-w-sm">
+                  <h1 className="my-6 text-pretty text-4xl font-bold lg:text-6xl">Where every scoop is a delight</h1>
+                  <Button asChild>
+                    <Link href="/products">Start Order</Link>
+                  </Button>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div className="flex flex-col gap-16 pb-8 pt-12 md:py-32">
+                <Image src="/bg.jpg" alt="" className="object-cover" fill sizes="100vw" />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </main>
+      </section>
+      <section className="justify-items-center py-3 my-16">
+        <div className="container">
+          <div className="inline-flex flex-row gap-2">
+            <h2 className="flex mt-10 scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight transition-colors first:mt-0">
+              Hot products
+              <Flame className="size-4" fill="red" color="red" />
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {hotProducts?.map((product) => product && <ProductCard product={product} key={product.productId} />)}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 };
 
