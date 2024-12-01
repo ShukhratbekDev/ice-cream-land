@@ -1,5 +1,5 @@
 import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import Footer from '@/app/_components/Footer';
 import Providers from '@/providers/Providers';
 import Hydration from '@/providers/Hydration';
 

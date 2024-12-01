@@ -1,6 +1,7 @@
 'use client';
 
 import { HeartIcon, Menu } from 'lucide-react';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Logo from '@/components/Logo';
@@ -24,10 +25,10 @@ const Navbar = () => {
         <nav className="hidden justify-between items-center lg:flex">
           <div className="flex items-center gap-6">
             <div className="flex gap-2">
-              <span className="size-4">
-                <Logo />
-              </span>
-              <span className="font-bold flex-grow text-nowrap">{siteConfig.name}</span>
+              <Link href="/" className="flex items-center transition-opacity hover:opacity-80">
+                <Logo className="fill-pink-500 dark:fill-pink-400" />
+                <span className="ml-3 text-xl font-bold text-foreground dark:text-foreground">{siteConfig.name}</span>
+              </Link>
             </div>
             <div className="flex items-center">
               <NavMenus />
