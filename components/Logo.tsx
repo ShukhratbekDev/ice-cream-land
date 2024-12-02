@@ -1,5 +1,9 @@
 import LogoSvg from '../public/logo.svg';
 
-const Logo = () => <LogoSvg />;
+type LogoProps = {
+  className?: string;
+};
+
+const Logo = ({ className }: LogoProps) => <LogoSvg className={className} />;
 
 export default Logo;
