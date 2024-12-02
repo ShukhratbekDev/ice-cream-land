@@ -127,10 +127,6 @@ const config: Config = {
           '0%': { transform: 'translateY(-100%) skew-x-12' },
           '100%': { transform: 'translateY(100%) skew-x-12' },
         },
-        float: {
-          '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
         sprinkle: {
           '0%': { transform: 'translateY(-20px) rotate(45deg)', opacity: '0' },
           '50%': { opacity: '1' },
