@@ -1,4 +1,4 @@
-import Navbar from '@/components/Navbar';
+import { Navbar } from '@/app/(main)/_components/navbar';
 import Footer from '@/app/_components/Footer';
 import Providers from '@/providers/Providers';
 import Hydration from '@/providers/Hydration';
