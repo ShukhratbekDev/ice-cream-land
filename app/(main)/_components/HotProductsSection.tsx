@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { Flame } from 'lucide-react';
 import ProductCard from '@/components/ProductCard';
-import { Product } from '@/types/product';
 import { cn } from '@/lib/utils';
+import { Product } from '@/db/schema';
 
 interface HotProductsSectionProps {
   products: Product[];
