@@ -25,40 +25,61 @@ const CartItems = () => {
   };
 
   return (
-    <div className="grid grid-flow-row auto-rows-max gap-4 mb-4">
+    <div className="grid grid-flow-row auto-rows-max gap-4 mb-4" role="list" aria-label="Shopping cart items">
       {data?.length === 0 ? (
-        <h1 className="py-6">You do not have any items</h1>
+        <p className="py-6 text-muted-foreground text-center" role="status">
+          Your shopping cart is empty
+        </p>
       ) : (
         data?.map((item) => (
-          <div key={item.productId} className="flex items-center space-x-4 overflow-hidden ">
+          <div
+            key={item.productId}
+            className="flex items-center space-x-4 overflow-hidden p-2 rounded-lg hover:bg-accent/50 transition-colors"
+            role="listitem"
+          >
             <div className="flex-none w-[100px] group">
-              <figure className="group-hover:opacity-80 relative w-full aspect-[4/3]">
+              <figure
+                className="group-hover:opacity-80 relative w-full aspect-[4/3]"
+                aria-label={`Image of ${item?.product?.name}`}
+              >
                 <Image
                   src={item?.product?.imageUrl ?? ''}
                   alt={item?.product?.name ?? ''}
-                  className="object-cover"
+                  className="object-cover rounded-md"
                   fill
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 100px, 100px"
+                  loading="lazy"
                 />
               </figure>
             </div>
-            <div className="w-full">
-              <p className="text-sm font-medium leading-none">{item?.product?.name}</p>
-              <p className="text-sm text-muted-foreground">{item?.product?.description}</p>
-              <div className="flex">
-                <p className="text-gray-500">
-                  <Badge variant="outline">Qty {item.quantity}</Badge>
-                </p>
-                <p className="ml-4">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium leading-none truncate">{item?.product?.name}</p>
+              <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{item?.product?.description}</p>
+              <div className="flex items-center gap-2 mt-2">
+                <Badge variant="outline" className="text-xs" aria-label={`Quantity: ${item.quantity}`}>
+                  Qty {item.quantity}
+                </Badge>
+                <span
+                  className="text-sm font-medium"
+                  aria-label={`Price: ${setCurrency({
+                    price: getPrice(item) ?? 0,
+                    locale: selectedRegion?.regionId,
+                    currency: selectedRegion?.currency,
+                  })}`}
+                >
                   {setCurrency({
-                    price: getPrice(item),
+                    price: getPrice(item) ?? 0,
                     locale: selectedRegion?.regionId,
                     currency: selectedRegion?.currency,
                   })}
-                </p>
+                </span>
               </div>
             </div>
-            <div>{item?.productId && <RemoveItemFromCart productId={item.productId} />}</div>
+            <div className="flex-none">
+              {item?.productId && (
+                <RemoveItemFromCart productId={item.productId} aria-label={`Remove ${item?.product?.name} from cart`} />
+              )}
+            </div>
           </div>
         ))
       )}

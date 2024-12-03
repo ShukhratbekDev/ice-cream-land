@@ -81,3 +81,8 @@ export async function createOrder(body: OrderPayload) {
   const res = await fetch('/api/orders', { method: 'POST', body: JSON.stringify(body) });
   return await res.json();
 }
+
+export async function getAnalytics() {
+  const res = await fetch('/api/analytics');
+  return await res.json();
+}

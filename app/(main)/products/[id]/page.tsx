@@ -1,9 +1,17 @@
+import { getProduct } from '@/utils/api-requests';
+import { Suspense } from 'react';
 import ProductView from '@/components/ProductView';
+import { ProductSkeleton } from '@/components/ProductView';
 
-const ProductViewPage = async ({ params }: { params: Promise<{ id: string }> }) => {
-  const productId = Number((await params).id);
+async function ProductViewPage({ params }: { params: { id: string } }) {
+  const productId = Number(params.id);
+  const product = await getProduct(productId);
 
-  return <ProductView productId={productId} />;
-};
+  return (
+    <Suspense fallback={<ProductSkeleton />}>
+      <ProductView product={product} />
+    </Suspense>
+  );
+}
 
 export default ProductViewPage;
