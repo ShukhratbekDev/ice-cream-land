@@ -6,7 +6,7 @@ import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from 'recharts';
 import { useAnalytics } from '@/hooks/useAnalytics';
 import { Skeleton } from '@/components/ui/skeleton';
 
-interface SalesByRegionItem {
+export interface SalesByRegionItem {
   regionId: string;
   totalSales: string;
 }
