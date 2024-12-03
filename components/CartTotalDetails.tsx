@@ -37,7 +37,12 @@ const CartTotalDetails = ({ openCollapse }: CartTotalDetailsProps) => {
     }, 0);
   };
 
-  const { data: finalPrice } = useCalculateFinalPrice(selectedRegion?.regionId ?? 'UZB', getCartTotal());
+  const cartTotal = getCartTotal();
+  const { data: finalPrice } = useCalculateFinalPrice(selectedRegion?.regionId ?? 'UZB', cartTotal);
+
+  if (cartTotal <= 0) {
+    return <div className="text-sm text-muted-foreground text-center py-4">Add items to cart to see total</div>;
+  }
 
   return (
     <Collapsible open={isOpen} onOpenChange={setIsOpen}>
@@ -52,7 +57,7 @@ const CartTotalDetails = ({ openCollapse }: CartTotalDetailsProps) => {
           <div>Subtotal</div>
           <div>
             {setCurrency({
-              price: getCartTotal(),
+              price: cartTotal,
               locale: selectedRegion?.regionId,
               currency: selectedRegion?.currency,
             })}
