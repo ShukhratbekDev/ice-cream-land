@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/db';
 import { orders } from '@/db/schema/orders';
-import { orderItems } from '@/db/schema/orderItems';
-import { sql } from 'drizzle-orm';
+import { desc, sql } from 'drizzle-orm';
 
 export async function GET() {
   try {
@@ -10,22 +9,21 @@ export async function GET() {
     const salesByRegion = await db
       .select({
         regionId: orders.regionId,
-        totalSales: sql<number>`SUM(${orderItems.price} * ${orderItems.quantity})`,
+        totalSales: sql<string>`SUM(${orders.totalAmount})::text`,
       })
       .from(orders)
-      .innerJoin(orderItems, sql`${orderItems.orderId} = ${orders.orderId}`)
       .groupBy(orders.regionId);
 
     // Query to get sales data by month
     const salesByMonth = await db
       .select({
-        month: sql`TO_CHAR(${orders.createdAt}, 'YYYY-MM')`,
-        totalSales: sql<number>`SUM(${orderItems.price} * ${orderItems.quantity})`,
+        month: sql<string>`TO_CHAR(${orders.createdAt}, 'YYYY-MM')`,
+        totalSales: sql<string>`SUM(${orders.totalAmount})::text`,
       })
       .from(orders)
-      .innerJoin(orderItems, sql`${orderItems.orderId} = ${orders.orderId}`)
       .groupBy(sql`TO_CHAR(${orders.createdAt}, 'YYYY-MM')`)
-      .orderBy(sql`TO_CHAR(${orders.createdAt}, 'YYYY-MM')`);
+      .orderBy(desc(sql`TO_CHAR(${orders.createdAt}, 'YYYY-MM')`))
+      .limit(12);
 
     // Return the data with NextResponse
     return NextResponse.json(
@@ -36,7 +34,7 @@ export async function GET() {
       { status: 200 }
     );
   } catch (error) {
-    console.error(error);
+    console.error('Error generating analytics:', error);
     return NextResponse.json({ message: 'Failed to generate analytics' }, { status: 500 });
   }
 }
