@@ -8,7 +8,7 @@ import { useAnalytics } from '@/hooks/useAnalytics';
 import { Skeleton } from '@/components/ui/skeleton';
 import { Monitor } from 'lucide-react';
 
-interface SalesByMonthItem {
+export interface SalesByMonthItem {
   month: string;
   totalSales: string;
 }

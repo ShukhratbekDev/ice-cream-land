@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import SalesByRegionChart from '@/components/analytics/SalesByRegionChart';
 import SalesByMonthChart from '@/components/analytics/SalesByMonthChart';
 import { Skeleton } from '@/components/ui/skeleton';
+import ExportAnalyticsPDF from '@/components/analytics/ExportAnalyticsPDF';
 
 export default function AnalyticsPage() {
   const { isLoaded, userId } = useAuth();
@@ -30,8 +31,9 @@ export default function AnalyticsPage() {
     <section className="justify-items-center py-3" aria-label="Analytics Dashboard">
       <div className="container">
         <div className="flex-1 space-y-4 p-4 md:p-8 pt-6">
-          <div className="flex items-center justify-between space-y-2">
+          <div className="flex items-center justify-between">
             <h1 className="text-3xl font-bold tracking-tight">Analytics Dashboard</h1>
+            <ExportAnalyticsPDF />
           </div>
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-8" role="region" aria-label="Sales Analytics Charts">
             {/* Monthly Sales Chart - Wider */}
