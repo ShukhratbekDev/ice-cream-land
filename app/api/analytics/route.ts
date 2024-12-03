@@ -37,6 +37,6 @@ export async function GET() {
     );
   } catch (error) {
     console.error(error);
-    return NextResponse.json({ message: 'Failed to generate report' }, { status: 500 });
+    return NextResponse.json({ message: 'Failed to generate analytics' }, { status: 500 });
   }
 }

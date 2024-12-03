@@ -11,6 +11,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { menus } from './menus';
+import { useAuth } from '@clerk/nextjs';
 
 interface NavMenusProps {
   onSelect?: () => void;
@@ -18,11 +19,14 @@ interface NavMenusProps {
 
 export function NavMenus({ onSelect }: NavMenusProps) {
   const pathname = usePathname();
+  const { userId } = useAuth();
+
+  const visibleMenus = menus.filter((menu) => !menu.protected || userId);
 
   return (
     <NavigationMenu className="max-w-full lg:max-w-none">
       <NavigationMenuList className="lg:flex-row flex-col items-center justify-center space-y-2 lg:space-y-0">
-        {menus.map((menu, index) => {
+        {visibleMenus.map((menu, index) => {
           const isActive = pathname === menu.path;
 
           return (
