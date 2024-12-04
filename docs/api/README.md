@@ -4,13 +4,12 @@ This directory contains the OpenAPI specification for the Ice Cream Land API.
 
 ## Overview
 
-The Ice Cream Land API is a RESTful API that provides endpoints for:
+The Ice Cream Land API provides Next.js API routes for:
 
-- Product management
-- Shopping cart operations
+- Product listing and details
+- Shopping cart management
 - Order processing
-- Multi-region support
-- Currency handling (USD, UZS)
+- User likes management
 
 ## OpenAPI Specification
 
@@ -41,75 +40,121 @@ To view the API documentation in a more readable format, you can:
 
 ## Authentication
 
-The API uses JWT Bearer token authentication. Include the token in the Authorization header:
+The API uses Clerk for authentication. Protected endpoints require a valid Clerk session.
 
-```
-Authorization: Bearer <your_token>
-```
+## Base URL
 
-## Base URLs
-
-- Production: `https://api.ice-cream-land.example.com/v1`
-- Development: `http://localhost:3000/api`
+All API endpoints are relative to: `/api`
 
 ## Endpoints
 
 ### Products
 
-- `GET /products` - List all products
-- `POST /products` - Create a new product
-- `GET /products/{id}` - Get product details
+- `GET /products` - List all products with their categories, ingredients, and user-specific likes
+- `GET /products/[id]` - Get detailed product information
 
 ### Cart
 
-- `GET /cart` - View cart contents
-- `POST /cart` - Add item to cart
-- `PUT /cart/{id}` - Update cart item
-- `DELETE /cart/{id}` - Remove item from cart
+- `GET /cart` - Get current user's cart with items and product details
+- `POST /cart/items` - Add item to cart
+- `PUT /cart/items/[id]` - Update cart item quantity
+- `DELETE /cart/items/[id]` - Remove item from cart
+- `POST /cart/clear` - Clear all items from cart
 
 ### Orders
 
-- `GET /orders` - List orders
-- `POST /orders` - Create order
-- `GET /orders/{id}` - Get order details
+- `POST /orders` - Create a new order
+
+### User
+
+- `GET /me/liked-products` - Get user's liked products
 
 ## Error Handling
 
-All errors follow a standard format:
+All errors follow this format:
 
 ```json
 {
-  "code": "ERROR_CODE",
-  "message": "Human readable error message"
+  "error": "Error message"
 }
 ```
 
-Common error codes:
+Common HTTP Status Codes:
 
-- `UNAUTHORIZED` - Authentication required
-- `FORBIDDEN` - Insufficient permissions
-- `NOT_FOUND` - Resource not found
-- `VALIDATION_ERROR` - Invalid input
-- `INTERNAL_ERROR` - Server error
+- `401` - Unauthorized (no Clerk session)
+- `404` - Resource not found
+- `500` - Internal server error
 
-## Rate Limiting
+## Data Models
 
-API requests are subject to rate limiting:
-
-- Authenticated users: 100 requests per minute
-- Unauthenticated users: 20 requests per minute
-
-Rate limit headers are included in all responses:
-
+### Product
+```typescript
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  category: {
+    categoryId: string;
+    name: string;
+  };
+  ingredients: {
+    name: string;
+  }[];
+  likes?: {
+    userId: string;
+  }[];
+}
 ```
-X-RateLimit-Limit: 100
-X-RateLimit-Remaining: 95
-X-RateLimit-Reset: 1640995200
+
+### Cart Item
+```typescript
+interface CartItem {
+  id: string;
+  productId: string;
+  quantity: number;
+  product: Product;
+}
 ```
 
-## Versioning
+## Example Usage
 
-The API uses URL versioning (e.g., `/v1/products`). Breaking changes will be introduced in new API versions.
+### Fetch Products
+
+```typescript
+const response = await fetch('/api/products');
+const products = await response.json();
+```
+
+### Add to Cart
+
+```typescript
+const response = await fetch('/api/cart/items', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    productId: '123',
+    quantity: 1,
+  }),
+});
+```
+
+### Update Cart Item
+
+```typescript
+const response = await fetch(`/api/cart/items/${itemId}`, {
+  method: 'PUT',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    quantity: 2,
+  }),
+});
+```
 
 ## Getting Started
 
