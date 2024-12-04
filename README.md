@@ -1,38 +1,156 @@
-# Ice Cream Land
+# Ice Cream Land 🍦
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+A modern multi-regional e-commerce platform for ice cream sales, built with Next.js 14, TypeScript, and Neon PostgreSQL.
 
-## Getting Started
+## Features
 
-First, run the development server:
+- 🌍 Multi-Region Support
+- 💰 Multi-Currency (USD, UZS)
+- 🛒 Shopping Cart Management
+- 💳 Secure Checkout Process
+- 📱 Responsive Design
+- 🔒 Authentication with Clerk
+- 📊 Sales Analytics
+- 🎨 Modern UI with shadcn/ui
+- 🚀 Serverless Architecture
+- 🔄 Real-time Updates
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Tech Stack
+
+### Frontend
+
+- **Framework:** Next.js 14 (App Router)
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **Components:** shadcn/ui
+- **Authentication:** Clerk
+- **State:** React Query + Zustand
+- **Forms:** React Hook Form + Zod
+
+### Backend
+
+- **API:** Next.js API Routes
+- **Database:** Neon PostgreSQL (Serverless)
+- **ORM:** Drizzle
+- **Deployment:** Vercel
+
+### Tools & Services
+
+- **Version Control:** Git
+- **Package Manager:** npm
+- **Linting:** ESLint
+- **Formatting:** Prettier
+- **Analytics:** Vercel Analytics
+
+## Quick Start
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/yourusername/ice-cream-land.git
+   cd ice-cream-land
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Copy environment variables:
+
+   ```bash
+   cp .env.example .env
+   ```
+
+4. Update environment variables in `.env`:
+
+   ```
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+   CLERK_SECRET_KEY=
+   NEXT_PUBLIC_CLERK_SIGN_IN_URL=
+   NEXT_PUBLIC_CLERK_SIGN_UP_URL=
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=
+   NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=
+
+   DATABASE_URL=
+   DIRECT_URL=
+
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
+
+5. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Documentation
+
+- [Getting Started Guide](./docs/getting-started.md)
+- [Architecture Overview](./docs/architecture/README.md)
+- [API Documentation](./docs/api/README.md)
+- [Database Schema](./docs/database/README.md)
+- [UI Components](./docs/ui/README.md)
+- [Testing Guide](./docs/testing/README.md)
+- [Deployment Guide](./docs/deployment/README.md)
+- [Contributing Guide](./docs/contributing.md)
+
+## Project Structure
+
+```
+ice-cream-land/
+├── app/                # Next.js app directory
+│   ├── (auth)/        # Authentication routes
+│   ├── (dashboard)/   # Admin dashboard routes
+│   ├── (routes)/      # Main application routes
+│   └── api/           # API routes
+├── components/        # React components
+│   ├── ui/           # shadcn/ui components
+│   └── shared/       # Shared components
+├── lib/              # Utility functions
+│   ├── db/           # Database configuration
+│   └── utils/        # Helper functions
+├── public/           # Static files
+├── styles/           # Global styles
+├── types/            # TypeScript types
+└── docs/             # Documentation
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Database Schema
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Our database is hosted on Neon PostgreSQL and uses Drizzle ORM. Key tables include:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `products` - Product information
+- `categories` - Product categories
+- `orders` - Order details
+- `order_items` - Items in each order
+- `regions` - Regional settings
+- `prices` - Region-specific pricing
 
-## Learn More
+> ⚠️ **Note**: We use a single database for all environments. Never run seed commands on the remote database.
 
-To learn more about Next.js, take a look at the following resources:
+## Contributing
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Please read our [Contributing Guide](./docs/contributing.md) for details on our code of conduct and development process.
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Acknowledgments
+
+- UI Components by [shadcn/ui](https://ui.shadcn.com/)
+- Icons by [Lucide](https://lucide.dev/)
+- Database hosting by [Neon](https://neon.tech)
+- ORM by [Drizzle](https://orm.drizzle.team/)
+- Authentication by [Clerk](https://clerk.com/)
+- Deployment by [Vercel](https://vercel.com/)
