@@ -30,9 +30,7 @@ export default function OrderForm() {
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
-    defaultValues: {
-      createdAt: new Date(),
-    },
+    defaultValues: {},
   });
 
   const onSubmit = useCallback(

@@ -1,7 +1,6 @@
 'use client';
 
 import Image from 'next/image';
-import { Badge } from '@/components/ui/badge';
 import { setCurrency } from '@/lib/setCurrency';
 import React from 'react';
 import { useCart } from '@/hooks/useCart';
@@ -9,6 +8,7 @@ import useBasicStore from '@/hooks/useBasicStore';
 import { CartItemWithProduct } from '@/db/schema';
 import { useProducts } from '@/hooks/useProducts';
 import RemoveItemFromCart from '@/components/RemoveItemFromCart';
+import CartItemQuantityInput from '@/components/CartItemQuantity';
 
 const CartItems = () => {
   const { data } = useCart();
@@ -55,10 +55,8 @@ const CartItems = () => {
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium leading-none truncate">{item?.product?.name}</p>
               <p className="text-sm text-muted-foreground line-clamp-2 mt-1">{item?.product?.description}</p>
-              <div className="flex items-center gap-2 mt-2">
-                <Badge variant="outline" className="text-xs" aria-label={`Quantity: ${item.quantity}`}>
-                  Qty {item.quantity}
-                </Badge>
+              <div className="flex items-center gap-4 mt-2">
+                <CartItemQuantityInput itemInCart={item} />
                 <span
                   className="text-sm font-medium"
                   aria-label={`Price: ${setCurrency({
