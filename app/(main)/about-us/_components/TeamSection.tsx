@@ -11,10 +11,10 @@ const teamMembers = [
   { name: 'Leyla Baxridinova', role: 'Automation Tester', imageUrl: '/team/leyla.jpg' },
   { name: 'Yodgorjon Yuldoshev', role: 'Web Developer', imageUrl: '/team/yodgorjon.jpg' },
   { name: 'Diyorbek Safarboev', role: 'UI/UX Designer', imageUrl: '/team/diyorbek.jpg' },
-  { name: 'Abror Orifxonov', role: 'UI/UX Designer', imageUrl: '/team/deadpool-pro.jpg' },
-  { name: 'Khumoyun Izzatov', role: 'Web Developer', imageUrl: '/team/deadpool-pro.jpg' },
+  { name: 'Abror Orifxonov', role: 'UI/UX Designer', imageUrl: '/team/abror.jpg' },
+  { name: 'Khumoyun Izzatov', role: 'Web Developer', imageUrl: '/team/khumoyun.jpg' },
   { name: 'Sanjar Pulatov', role: 'Web Developer', imageUrl: '/team/deadpool-pro.jpg' },
-  { name: 'Oybek Tulaboev', role: 'Manual Tester', imageUrl: '/team/deadpool-pro.jpg' },
+  { name: 'Oybek Tulaboev', role: 'Manual Tester', imageUrl: '/team/oybek.jpg' },
 ];
 
 function TeamMemberCard({
