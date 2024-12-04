@@ -88,6 +88,7 @@ Common HTTP Status Codes:
 ## Data Models
 
 ### Product
+
 ```typescript
 interface Product {
   id: string;
@@ -109,6 +110,7 @@ interface Product {
 ```
 
 ### Cart Item
+
 ```typescript
 interface CartItem {
   id: string;
