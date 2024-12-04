@@ -101,22 +101,32 @@ A modern multi-regional e-commerce platform for ice cream sales, built with Next
 ## Project Structure
 
 ```
-ice-cream-land/
-├── app/                # Next.js app directory
-│   ├── (auth)/        # Authentication routes
-│   ├── (dashboard)/   # Admin dashboard routes
-│   ├── (routes)/      # Main application routes
-│   └── api/           # API routes
-├── components/        # React components
-│   ├── ui/           # shadcn/ui components
-│   └── shared/       # Shared components
-├── lib/              # Utility functions
-│   ├── db/           # Database configuration
-│   └── utils/        # Helper functions
-├── public/           # Static files
-├── styles/           # Global styles
-├── types/            # TypeScript types
-└── docs/             # Documentation
+ice-cream-land-itpu/
+├── app/                    # Next.js 14 app directory with app router
+│   ├── (auth)/            # Authentication routes and layouts
+│   ├── (main)/            # Main application routes
+│   ├── api/               # API routes
+│   └── layout.tsx         # Root layout
+├── components/            # React components
+│   ├── ui/               # Reusable UI components (shadcn/ui)
+│   └── analytics/        # Analytics related components
+├── config/               # Configuration files
+├── db/                   # Database schema and migrations
+├── docs/                 # Project documentation
+├── hooks/               # Custom React hooks
+├── lib/                 # Utility functions and shared code
+├── providers/           # React context providers
+├── public/              # Static assets
+├── styles/              # Global styles
+├── types/               # TypeScript type definitions
+├── utils/               # Utility functions
+├── .env.example         # Environment variables template
+├── drizzle.config.ts    # Drizzle ORM configuration
+├── middleware.ts        # Next.js middleware
+├── next.config.mjs      # Next.js configuration
+├── package.json         # Project dependencies
+├── tailwind.config.ts   # Tailwind CSS configuration
+└── tsconfig.json        # TypeScript configuration
 ```
 
 ## Database Schema
