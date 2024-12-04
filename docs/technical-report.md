@@ -993,6 +993,7 @@ graph TB
      - DDoS protection
      - Edge caching
    - **Build Process**
+
      ```mermaid
      sequenceDiagram
          participant Git
@@ -1033,6 +1034,7 @@ graph TB
    ```
 
 3. **Environment Configuration**
+
    ```mermaid
    graph LR
        subgraph "Environment Management"
@@ -1140,6 +1142,7 @@ graph TB
    - Performance bottlenecks
 
 3. **Metrics Dashboard**
+
    ```mermaid
    graph TB
        subgraph "Monitoring Stack"
@@ -1172,6 +1175,7 @@ graph TB
    - Database resources
 
 3. **Cache Strategy**
+
    ```mermaid
    flowchart TB
        subgraph "Caching Layers"
@@ -1204,6 +1208,7 @@ graph TB
    - Service recovery
 
 3. **High Availability**
+
    ```mermaid
    graph TB
        subgraph "HA Architecture"
