@@ -13,7 +13,7 @@ const teamMembers = [
   { name: 'Diyorbek Safarboev', role: 'UI/UX Designer', imageUrl: '/team/diyorbek.jpg' },
   { name: 'Abror Orifxonov', role: 'UI/UX Designer', imageUrl: '/team/abror.jpg' },
   { name: 'Khumoyun Izzatov', role: 'Web Developer', imageUrl: '/team/khumoyun.jpg' },
-  { name: 'Sanjar Pulatov', role: 'Web Developer', imageUrl: '/team/deadpool-pro.jpg' },
+  { name: 'Sanjar Pulatov', role: 'Web Developer', imageUrl: '/team/sanjar.jpg' },
   { name: 'Oybek Tulaboev', role: 'Manual Tester', imageUrl: '/team/oybek.jpg' },
 ];
 
